@@ -1,0 +1,2422 @@
+<VORTEXInputFile Version="10.5.1.0">
+  <GeneralProjectInformation title="DolphinInterventions">
+    <ProjectTitle>DolphinInterventions</ProjectTitle>
+    <ProjectPath>C:\Vortex10Projects\SarasotaDolphins</ProjectPath>
+    <ProjectNotes>PVA model of Sarasota Bay population with demographic rate estimates from 1993 through 2019.
+Described further in Lacy et al. 2020. 
+
+Scenarios for testing the population-level benefits of interventions to prevent loss of dolphins. 
+
+</ProjectNotes>
+    <IsSavedFormatEU>False</IsSavedFormatEU>
+    <nscenes>4</nscenes>
+    <SpecialOptions>
+      <rtGraphs>True</rtGraphs>
+      <quietRuns>False</quietRuns>
+      <breedPriority>0</breedPriority>
+      <MKsubset>0</MKsubset>
+      <HoldingPen>0</HoldingPen>
+      <TranslocateRandom>False</TranslocateRandom>
+      <UndocumentedOptions>
+      </UndocumentedOptions>
+    </SpecialOptions>
+  </GeneralProjectInformation>
+  <Scenario scenario="1">
+    <Notes scenario="1">
+      <Scene>Start at 1985 N = 91, with Stable Age Distribution.
+
+No Harvest of dolphins that were rescued
+
+No Immigration
+Mortality = Deaths/.33
+
+No Carrying Capacity limitiation on population size.</Scene>
+      <Species>
+      </Species>
+      <StateVar>Initialization function samples from distributions that use SE for each parameter estimate.</StateVar>
+      <Dispersal>Move a fixed number of individuals to test the effect on TBRE of different immigration rates.
+
+Note that Vortex uses probabilistic rounding for non-integer values of migrants.</Dispersal>
+      <ReproSystem>
+      </ReproSystem>
+      <ReproRates>
+      </ReproRates>
+      <Mortality>
+      </Mortality>
+      <Catastrophe>
+      </Catastrophe>
+      <MateMonop>
+      </MateMonop>
+      <InitN>
+      </InitN>
+      <K>Not included in model events.</K>
+      <Harvest>
+      </Harvest>
+      <Supplementation>
+      </Supplementation>
+      <Genetics>
+      </Genetics>
+    </Notes>
+    <Settings scenario="1">
+      <Name>Intervention1985to2020</Name>
+      <ST>False</ST>
+      <nRuns>10000</nRuns>
+      <nYears>35</nYears>
+      <YrDays>365</YrDays>
+      <ExtDef1Sex>True</ExtDef1Sex>
+      <ExtDefFunc>False</ExtDefFunc>
+      <ExtDefN>
+      </ExtDefN>
+      <nPops>1</nPops>
+      <PopBase>False</PopBase>
+      <vMacroFile>
+      </vMacroFile>
+      <Rfile>
+      </Rfile>
+      <AnimListFlag>0</AnimListFlag>
+      <fullAnimList>0</fullAnimList>
+      <censusRuns>0</censusRuns>
+      <outHFlag>False</outHFlag>
+      <outGSvars>0</outGSvars>
+      <outPSvars>0</outPSvars>
+      <GDinclude>False</GDinclude>
+      <PSinclude>False</PSinclude>
+      <ExcludeLastPop>True</ExcludeLastPop>
+      <delayMort0>False</delayMort0>
+    </Settings>
+    <ModelSteps scenario="1">
+      <Step>EV</Step>
+      <Step>Breed</Step>
+      <Step>Mortality</Step>
+      <Step>Age</Step>
+      <Step>Disperse</Step>
+      <Step>Harvest</Step>
+      <Step>Supplement</Step>
+      <Step>rCalc</Step>
+      <Step>UpdateVars</Step>
+      <Step>Census</Step>
+    </ModelSteps>
+    <SpeciesDescription scenario="1">
+      <InbrDepr>False</InbrDepr>
+      <LethalEquiv>6.29</LethalEquiv>
+      <PercentLethals>50</PercentLethals>
+      <EVldcorrelation>0.5</EVldcorrelation>
+      <EVcorrelation>0.5</EVcorrelation>
+      <useBetaEV>False</useBetaEV>
+      <Catastrophes nCats="0" />
+    </SpeciesDescription>
+    <StateVariables scenario="1">
+      <GlobalStateVariables GSvars="21">
+        <GSVar var="1">
+          <Label>CALFMORT</Label>
+          <InitState>=23.68+2.86*NRAND</InitState>
+          <TransState>=GS1</TransState>
+        </GSVar>
+        <GSVar var="2">
+          <Label>SADEATHS</Label>
+          <InitState>=1.83+0.48*NRAND</InitState>
+          <TransState>=GS2</TransState>
+        </GSVar>
+        <GSVar var="3">
+          <Label>ADDEATHS</Label>
+          <InitState>=1.02+0.23*NRAND</InitState>
+          <TransState>=GS3</TransState>
+        </GSVar>
+        <GSVar var="4">
+          <Label>OLDMDEATHSB</Label>
+          <InitState>=0.451+0.124*NRAND</InitState>
+          <TransState>=GS4</TransState>
+        </GSVar>
+        <GSVar var="5">
+          <Label>OLDFDEATHS</Label>
+          <InitState>=3.56+0.91*NRAND</InitState>
+          <TransState>=GS5</TransState>
+        </GSVar>
+        <GSVar var="6">
+          <Label>PLOSS</Label>
+          <InitState>0.33</InitState>
+          <TransState>=GS6</TransState>
+        </GSVar>
+        <GSVar var="7">
+          <Label>SAMORT</Label>
+          <InitState>=SADEATHS/PLOSS</InitState>
+          <TransState>=GS7</TransState>
+        </GSVar>
+        <GSVar var="8">
+          <Label>ADMORT</Label>
+          <InitState>=ADDEATHS/PLOSS</InitState>
+          <TransState>=GS8</TransState>
+        </GSVar>
+        <GSVar var="9">
+          <Label>OLDFMORT</Label>
+          <InitState>=OLDFDEATHS/PLOSS</InitState>
+          <TransState>=GS9</TransState>
+        </GSVar>
+        <GSVar var="10">
+          <Label>OLDMMORTA</Label>
+          <InitState>=ADMORT</InitState>
+          <TransState>=GS10</TransState>
+        </GSVar>
+        <GSVar var="11">
+          <Label>OLDMMORTB</Label>
+          <InitState>=(OLDMDEATHSB/PLOSS)</InitState>
+          <TransState>=GS11</TransState>
+        </GSVar>
+        <GSVar var="12">
+          <Label>EVCM</Label>
+          <InitState>7.81</InitState>
+          <TransState>=GS12</TransState>
+        </GSVar>
+        <GSVar var="13">
+          <Label>EVSAMORT</Label>
+          <InitState>2.1</InitState>
+          <TransState>=GS13</TransState>
+        </GSVar>
+        <GSVar var="14">
+          <Label>EVADMORT</Label>
+          <InitState>0</InitState>
+          <TransState>=GS14</TransState>
+        </GSVar>
+        <GSVar var="15">
+          <Label>EVOLDFMORT</Label>
+          <InitState>0</InitState>
+          <TransState>=GS15</TransState>
+        </GSVar>
+        <GSVar var="16">
+          <Label>EVOLDMMORT</Label>
+          <InitState>2.91</InitState>
+          <TransState>=GS16</TransState>
+        </GSVar>
+        <GSVar var="17">
+          <Label>BRYOUNGB</Label>
+          <InitState>=4.344+0.014*NRAND</InitState>
+          <TransState>=GS17</TransState>
+        </GSVar>
+        <GSVar var="18">
+          <Label>BRPEAK</Label>
+          <InitState>=29.42+2.16*NRAND</InitState>
+          <TransState>=GS18</TransState>
+        </GSVar>
+        <GSVar var="19">
+          <Label>BROLDB</Label>
+          <InitState>=-1.165+0.009*NRAND</InitState>
+          <TransState>=GS19</TransState>
+        </GSVar>
+        <GSVar var="20">
+          <Label>EVBRPEAK</Label>
+          <InitState>7.97</InitState>
+          <TransState>=GS20</TransState>
+        </GSVar>
+        <GSVar var="21">
+          <Label>EVBROLD</Label>
+          <InitState>3.08</InitState>
+          <TransState>=GS21</TransState>
+        </GSVar>
+      </GlobalStateVariables>
+      <PopulationStateVariables PSvars="0" />
+      <IndividualStateVariables ISvars="0" />
+    </StateVariables>
+    <DefaultVarValues nDefs="0" />
+    <ReproductiveSystem scenario="1">
+      <Monogamy>False</Monogamy>
+      <Polygamy>True</Polygamy>
+      <LTMonogamy>False</LTMonogamy>
+      <LTPolygamy>False</LTPolygamy>
+      <Hermaphroditic>False</Hermaphroditic>
+      <FemaleBreedingAge>6</FemaleBreedingAge>
+      <MaleBreedingAge>11</MaleBreedingAge>
+      <FemaleLastBreedingAge>48</FemaleLastBreedingAge>
+      <MaleLastBreedingAge>40</MaleLastBreedingAge>
+      <MaximumAge>68</MaximumAge>
+      <maxBroods>1</maxBroods>
+      <maxBroodSize>1</maxBroodSize>
+      <UseNormal>False</UseNormal>
+      <UseFullDistr>True</UseFullDistr>
+      <SexRatio>50</SexRatio>
+      <DepOffspring>0</DepOffspring>
+    </ReproductiveSystem>
+    <StableAgeDistribution scenario="1">Proportional</StableAgeDistribution>
+    <TranslocateOption scenario="1">
+      <Translocate>False</Translocate>
+      <TranslocationSurvival>50</TranslocationSurvival>
+      <TranslocationRelSurvival>100</TranslocationRelSurvival>
+      <TranslocationIf>1</TranslocationIf>
+      <ISHarvest>0</ISHarvest>
+    </TranslocateOption>
+    <GeneticManagement scenario="1">
+      <ImportStudbook>False</ImportStudbook>
+      <StudbookFile>
+      </StudbookFile>
+      <StudbookAppend>False</StudbookAppend>
+      <NeutralLoci>1</NeutralLoci>
+      <Tally1Locus>True</Tally1Locus>
+      <TallyOtherLoci>False</TallyOtherLoci>
+      <TallyAllLoci>False</TallyAllLoci>
+      <ImportAlleleFreqsFile>False</ImportAlleleFreqsFile>
+      <AlleleFreqsFile>
+      </AlleleFreqsFile>
+      <Freq2Kinships>False</Freq2Kinships>
+      <OutputGenePop>False</OutputGenePop>
+      <OutputAlleleFreqFile>False</OutputAlleleFreqFile>
+      <mkGD>False</mkGD>
+      <mkGDist>False</mkGDist>
+      <MutationLoci>0</MutationLoci>
+      <MutationRate>0</MutationRate>
+      <MateTriesIS>0</MateTriesIS>
+    </GeneticManagement>
+    <PopulationRates scenario="1">
+      <Population pop="1">
+        <Label>Sarasota</Label>
+        <PopStateVariables pop="1" />
+        <DensityDependence pop="1">
+          <DDRepro>False</DDRepro>
+          <DDP0>50</DDP0>
+          <DDPK>25</DDPK>
+          <DDAllee>1</DDAllee>
+          <DDSlope>2</DDSlope>
+        </DensityDependence>
+        <ReproductiveRates pop="1">
+          <PercentBreed>=BRPEAK+(A&lt;12)*BRYOUNGB*(A-12)+(A&gt;25)*BROLDB*(A-25)</PercentBreed>
+          <EVBreed>=(A&gt;11)*(A&lt;26)*EVBRPEAK+(A&gt;25)*EVBROLD</EVBreed>
+          <Brood n="0">0</Brood>
+          <Brood n="1">100</Brood>
+          <BroodMean>2.5</BroodMean>
+          <BroodSD>1</BroodSD>
+          <BroodSize size="1">100</BroodSize>
+        </ReproductiveRates>
+        <MortalityRates pop="1">
+          <FemaleMort age="0">=CALFMORT</FemaleMort>
+          <EVFemaleMort age="0">=EVCM</EVFemaleMort>
+          <FemaleMort age="1">=SAMORT</FemaleMort>
+          <EVFemaleMort age="1">=EVSAMORT</EVFemaleMort>
+          <FemaleMort age="2">=SAMORT</FemaleMort>
+          <EVFemaleMort age="2">=EVSAMORT</EVFemaleMort>
+          <FemaleMort age="3">=SAMORT</FemaleMort>
+          <EVFemaleMort age="3">=EVSAMORT</EVFemaleMort>
+          <FemaleMort age="4">=SAMORT</FemaleMort>
+          <EVFemaleMort age="4">=EVSAMORT</EVFemaleMort>
+          <FemaleMort age="5">=ADMORT</FemaleMort>
+          <EVFemaleMort age="5">=EVADMORT</EVFemaleMort>
+          <FemaleMort age="6">=ADMORT*(A&lt;=25)+(A&gt;25)*OLDFMORT</FemaleMort>
+          <EVFemaleMort age="6">=EVADMORT*(A&lt;=25)+(A&gt;25)*EVOLDFMORT</EVFemaleMort>
+          <MaleMort age="0">=CALFMORT</MaleMort>
+          <EVMaleMort age="0">=EVCM</EVMaleMort>
+          <MaleMort age="1">=SAMORT</MaleMort>
+          <EVMaleMort age="1">=EVSAMORT</EVMaleMort>
+          <MaleMort age="2">=SAMORT</MaleMort>
+          <EVMaleMort age="2">=EVSAMORT</EVMaleMort>
+          <MaleMort age="3">=SAMORT</MaleMort>
+          <EVMaleMort age="3">=EVSAMORT</EVMaleMort>
+          <MaleMort age="4">=SAMORT</MaleMort>
+          <EVMaleMort age="4">=EVSAMORT</EVMaleMort>
+          <MaleMort age="5">=ADMORT</MaleMort>
+          <EVMaleMort age="5">=EVADMORT</EVMaleMort>
+          <MaleMort age="6">=ADMORT</MaleMort>
+          <EVMaleMort age="6">=EVADMORT</EVMaleMort>
+          <MaleMort age="7">=ADMORT</MaleMort>
+          <EVMaleMort age="7">=EVADMORT</EVMaleMort>
+          <MaleMort age="8">=ADMORT</MaleMort>
+          <EVMaleMort age="8">=EVADMORT</EVMaleMort>
+          <MaleMort age="9">=ADMORT</MaleMort>
+          <EVMaleMort age="9">=EVADMORT</EVMaleMort>
+          <MaleMort age="10">=ADMORT</MaleMort>
+          <EVMaleMort age="10">=EVADMORT</EVMaleMort>
+          <MaleMort age="11">=100*(A&gt;53)+ADMORT*(A&lt;=25)+(A&gt;25)*(OLDMMORTA+OLDMMORTB*(A-25))</MaleMort>
+          <EVMaleMort age="11">=EVADMORT*(A&lt;=25)+(A&gt;25)*EVOLDMMORT</EVMaleMort>
+        </MortalityRates>
+        <Monopolization pop="1">
+          <PercentMales>100</PercentMales>
+        </Monopolization>
+        <InitialPopulationSize pop="1">
+          <InitialN>91</InitialN>
+          <FemalesAge age="0">0</FemalesAge>
+          <FemalesAge age="1">309</FemalesAge>
+          <FemalesAge age="2">280</FemalesAge>
+          <FemalesAge age="3">254</FemalesAge>
+          <FemalesAge age="4">229</FemalesAge>
+          <FemalesAge age="5">207</FemalesAge>
+          <FemalesAge age="6">198</FemalesAge>
+          <FemalesAge age="7">191</FemalesAge>
+          <FemalesAge age="8">183</FemalesAge>
+          <FemalesAge age="9">175</FemalesAge>
+          <FemalesAge age="10">168</FemalesAge>
+          <FemalesAge age="11">161</FemalesAge>
+          <FemalesAge age="12">154</FemalesAge>
+          <FemalesAge age="13">148</FemalesAge>
+          <FemalesAge age="14">142</FemalesAge>
+          <FemalesAge age="15">136</FemalesAge>
+          <FemalesAge age="16">131</FemalesAge>
+          <FemalesAge age="17">125</FemalesAge>
+          <FemalesAge age="18">120</FemalesAge>
+          <FemalesAge age="19">115</FemalesAge>
+          <FemalesAge age="20">111</FemalesAge>
+          <FemalesAge age="21">106</FemalesAge>
+          <FemalesAge age="22">101</FemalesAge>
+          <FemalesAge age="23">97</FemalesAge>
+          <FemalesAge age="24">94</FemalesAge>
+          <FemalesAge age="25">89</FemalesAge>
+          <FemalesAge age="26">86</FemalesAge>
+          <FemalesAge age="27">80</FemalesAge>
+          <FemalesAge age="28">73</FemalesAge>
+          <FemalesAge age="29">69</FemalesAge>
+          <FemalesAge age="30">63</FemalesAge>
+          <FemalesAge age="31">59</FemalesAge>
+          <FemalesAge age="32">54</FemalesAge>
+          <FemalesAge age="33">50</FemalesAge>
+          <FemalesAge age="34">47</FemalesAge>
+          <FemalesAge age="35">43</FemalesAge>
+          <FemalesAge age="36">41</FemalesAge>
+          <FemalesAge age="37">37</FemalesAge>
+          <FemalesAge age="38">34</FemalesAge>
+          <FemalesAge age="39">32</FemalesAge>
+          <FemalesAge age="40">30</FemalesAge>
+          <FemalesAge age="41">27</FemalesAge>
+          <FemalesAge age="42">26</FemalesAge>
+          <FemalesAge age="43">23</FemalesAge>
+          <FemalesAge age="44">22</FemalesAge>
+          <FemalesAge age="45">20</FemalesAge>
+          <FemalesAge age="46">19</FemalesAge>
+          <FemalesAge age="47">17</FemalesAge>
+          <FemalesAge age="48">17</FemalesAge>
+          <FemalesAge age="49">15</FemalesAge>
+          <FemalesAge age="50">13</FemalesAge>
+          <FemalesAge age="51">13</FemalesAge>
+          <FemalesAge age="52">12</FemalesAge>
+          <FemalesAge age="53">11</FemalesAge>
+          <FemalesAge age="54">10</FemalesAge>
+          <FemalesAge age="55">10</FemalesAge>
+          <FemalesAge age="56">9</FemalesAge>
+          <FemalesAge age="57">8</FemalesAge>
+          <FemalesAge age="58">7</FemalesAge>
+          <FemalesAge age="59">7</FemalesAge>
+          <FemalesAge age="60">7</FemalesAge>
+          <FemalesAge age="61">6</FemalesAge>
+          <FemalesAge age="62">5</FemalesAge>
+          <FemalesAge age="63">5</FemalesAge>
+          <FemalesAge age="64">5</FemalesAge>
+          <FemalesAge age="65">5</FemalesAge>
+          <FemalesAge age="66">4</FemalesAge>
+          <FemalesAge age="67">4</FemalesAge>
+          <FemalesAge age="68">3</FemalesAge>
+          <MalesAge age="0">0</MalesAge>
+          <MalesAge age="1">309</MalesAge>
+          <MalesAge age="2">280</MalesAge>
+          <MalesAge age="3">254</MalesAge>
+          <MalesAge age="4">229</MalesAge>
+          <MalesAge age="5">207</MalesAge>
+          <MalesAge age="6">198</MalesAge>
+          <MalesAge age="7">191</MalesAge>
+          <MalesAge age="8">183</MalesAge>
+          <MalesAge age="9">175</MalesAge>
+          <MalesAge age="10">168</MalesAge>
+          <MalesAge age="11">161</MalesAge>
+          <MalesAge age="12">154</MalesAge>
+          <MalesAge age="13">148</MalesAge>
+          <MalesAge age="14">142</MalesAge>
+          <MalesAge age="15">136</MalesAge>
+          <MalesAge age="16">131</MalesAge>
+          <MalesAge age="17">125</MalesAge>
+          <MalesAge age="18">120</MalesAge>
+          <MalesAge age="19">115</MalesAge>
+          <MalesAge age="20">111</MalesAge>
+          <MalesAge age="21">106</MalesAge>
+          <MalesAge age="22">101</MalesAge>
+          <MalesAge age="23">97</MalesAge>
+          <MalesAge age="24">94</MalesAge>
+          <MalesAge age="25">89</MalesAge>
+          <MalesAge age="26">86</MalesAge>
+          <MalesAge age="27">82</MalesAge>
+          <MalesAge age="28">76</MalesAge>
+          <MalesAge age="29">72</MalesAge>
+          <MalesAge age="30">66</MalesAge>
+          <MalesAge age="31">61</MalesAge>
+          <MalesAge age="32">55</MalesAge>
+          <MalesAge age="33">49</MalesAge>
+          <MalesAge age="34">44</MalesAge>
+          <MalesAge age="35">38</MalesAge>
+          <MalesAge age="36">34</MalesAge>
+          <MalesAge age="37">29</MalesAge>
+          <MalesAge age="38">25</MalesAge>
+          <MalesAge age="39">21</MalesAge>
+          <MalesAge age="40">17</MalesAge>
+          <MalesAge age="41">15</MalesAge>
+          <MalesAge age="42">12</MalesAge>
+          <MalesAge age="43">10</MalesAge>
+          <MalesAge age="44">7</MalesAge>
+          <MalesAge age="45">6</MalesAge>
+          <MalesAge age="46">5</MalesAge>
+          <MalesAge age="47">4</MalesAge>
+          <MalesAge age="48">3</MalesAge>
+          <MalesAge age="49">2</MalesAge>
+          <MalesAge age="50">2</MalesAge>
+          <MalesAge age="51">1</MalesAge>
+          <MalesAge age="52">1</MalesAge>
+          <MalesAge age="53">0</MalesAge>
+          <MalesAge age="54">1</MalesAge>
+          <MalesAge age="55">0</MalesAge>
+          <MalesAge age="56">0</MalesAge>
+          <MalesAge age="57">0</MalesAge>
+          <MalesAge age="58">0</MalesAge>
+          <MalesAge age="59">0</MalesAge>
+          <MalesAge age="60">0</MalesAge>
+          <MalesAge age="61">0</MalesAge>
+          <MalesAge age="62">0</MalesAge>
+          <MalesAge age="63">0</MalesAge>
+          <MalesAge age="64">0</MalesAge>
+          <MalesAge age="65">0</MalesAge>
+          <MalesAge age="66">0</MalesAge>
+          <MalesAge age="67">0</MalesAge>
+          <MalesAge age="68">0</MalesAge>
+        </InitialPopulationSize>
+        <CarryingCapacity pop="1">
+          <K>200</K>
+          <EVK>0</EVK>
+          <Ktrend>False</Ktrend>
+          <Kyears>5</Kyears>
+          <Kchange>-10</Kchange>
+          <Kcriteria>False</Kcriteria>
+          <Ktest>=N</Ktest>
+          <Kpriority>0</Kpriority>
+          <AllowK>False</AllowK>
+          <KAllow>1</KAllow>
+        </CarryingCapacity>
+        <Harvest pop="1">
+          <Harvest>False</Harvest>
+          <StartYear>1</StartYear>
+          <EndYear>35</EndYear>
+          <Interval>1</Interval>
+          <HarvCriteria>1</HarvCriteria>
+          <IHarvCriteria>1</IHarvCriteria>
+          <FemalesAge age="0">0</FemalesAge>
+          <FemalesAge age="1">=(Y=1)+(Y=18)+(Y=25)</FemalesAge>
+          <FemalesAge age="2">=(Y=19)</FemalesAge>
+          <FemalesAge age="3">=(Y=23)</FemalesAge>
+          <FemalesAge age="4">0</FemalesAge>
+          <FemalesAge age="5">0</FemalesAge>
+          <FemalesAge age="6">=(Y=11)+(Y=27)</FemalesAge>
+          <MalesAge age="0">0</MalesAge>
+          <MalesAge age="1">0</MalesAge>
+          <MalesAge age="2">=(Y=29)+(Y=34)</MalesAge>
+          <MalesAge age="3">0</MalesAge>
+          <MalesAge age="4">0</MalesAge>
+          <MalesAge age="5">0</MalesAge>
+          <MalesAge age="6">0</MalesAge>
+          <MalesAge age="7">0</MalesAge>
+          <MalesAge age="8">=(Y=21)</MalesAge>
+          <MalesAge age="9">0</MalesAge>
+          <MalesAge age="10">=(Y=31)</MalesAge>
+          <MalesAge age="11">=(Y=7)+(Y=22)</MalesAge>
+        </Harvest>
+        <Supplementation pop="1">
+          <Supplement>False</Supplement>
+          <StartYear>1</StartYear>
+          <EndYear>100</EndYear>
+          <Interval>1</Interval>
+          <Criteria>1</Criteria>
+          <FemalesAge age="0">0</FemalesAge>
+          <FemalesAge age="1">0</FemalesAge>
+          <FemalesAge age="2">0</FemalesAge>
+          <FemalesAge age="3">0</FemalesAge>
+          <FemalesAge age="4">0</FemalesAge>
+          <FemalesAge age="5">0</FemalesAge>
+          <FemalesAge age="6">0</FemalesAge>
+          <MalesAge age="0">0</MalesAge>
+          <MalesAge age="1">0</MalesAge>
+          <MalesAge age="2">0</MalesAge>
+          <MalesAge age="3">0</MalesAge>
+          <MalesAge age="4">0</MalesAge>
+          <MalesAge age="5">0</MalesAge>
+          <MalesAge age="6">0</MalesAge>
+          <MalesAge age="7">0</MalesAge>
+          <MalesAge age="8">0</MalesAge>
+          <MalesAge age="9">0</MalesAge>
+          <MalesAge age="10">0</MalesAge>
+          <MalesAge age="11">0</MalesAge>
+        </Supplementation>
+        <GeneticManagement pop="1">
+          <BreedMaintainK>False</BreedMaintainK>
+          <AvoidInbr>False</AvoidInbr>
+          <AvoidInbrF>1</AvoidInbrF>
+          <PairMKdynamic>False</PairMKdynamic>
+          <PairMKStatic>False</PairMKStatic>
+          <SetKin>0</SetKin>
+          <MaxNMates>0</MaxNMates>
+          <NumTriesFindMate>10</NumTriesFindMate>
+        </GeneticManagement>
+      </Population>
+    </PopulationRates>
+  </Scenario>
+  <Scenario scenario="2">
+    <Notes scenario="2">
+      <Scene>Start at 1985 N = 91, with Stable Age Distribution.
+
+Harvest dolphins that were rescued
+
+No Immigration
+Mortality = Deaths/.33</Scene>
+      <Species>
+      </Species>
+      <StateVar>
+      </StateVar>
+      <Dispersal>Move a fixed number of individuals to test the effect on TBRE of different immigration rates.
+
+Note that Vortex uses probabilistic rounding for non-integer values of migrants.</Dispersal>
+      <ReproSystem>
+      </ReproSystem>
+      <ReproRates>
+      </ReproRates>
+      <Mortality>
+      </Mortality>
+      <Catastrophe>
+      </Catastrophe>
+      <MateMonop>
+      </MateMonop>
+      <InitN>
+      </InitN>
+      <K>
+      </K>
+      <Harvest>
+      </Harvest>
+      <Supplementation>
+      </Supplementation>
+      <Genetics>
+      </Genetics>
+    </Notes>
+    <Settings scenario="2">
+      <Name>NoIntervention1985to2020</Name>
+      <ST>False</ST>
+      <nRuns>10000</nRuns>
+      <nYears>35</nYears>
+      <YrDays>365</YrDays>
+      <ExtDef1Sex>True</ExtDef1Sex>
+      <ExtDefFunc>False</ExtDefFunc>
+      <ExtDefN>
+      </ExtDefN>
+      <nPops>1</nPops>
+      <PopBase>False</PopBase>
+      <vMacroFile>
+      </vMacroFile>
+      <Rfile>
+      </Rfile>
+      <AnimListFlag>0</AnimListFlag>
+      <fullAnimList>0</fullAnimList>
+      <censusRuns>0</censusRuns>
+      <outHFlag>False</outHFlag>
+      <outGSvars>0</outGSvars>
+      <outPSvars>0</outPSvars>
+      <GDinclude>False</GDinclude>
+      <PSinclude>False</PSinclude>
+      <ExcludeLastPop>True</ExcludeLastPop>
+      <delayMort0>False</delayMort0>
+    </Settings>
+    <ModelSteps scenario="2">
+      <Step>EV</Step>
+      <Step>Breed</Step>
+      <Step>Mortality</Step>
+      <Step>Age</Step>
+      <Step>Disperse</Step>
+      <Step>Harvest</Step>
+      <Step>Supplement</Step>
+      <Step>rCalc</Step>
+      <Step>UpdateVars</Step>
+      <Step>Census</Step>
+    </ModelSteps>
+    <SpeciesDescription scenario="2">
+      <InbrDepr>False</InbrDepr>
+      <LethalEquiv>6.29</LethalEquiv>
+      <PercentLethals>50</PercentLethals>
+      <EVldcorrelation>0.5</EVldcorrelation>
+      <EVcorrelation>0.5</EVcorrelation>
+      <useBetaEV>False</useBetaEV>
+      <Catastrophes nCats="0" />
+    </SpeciesDescription>
+    <StateVariables scenario="2">
+      <GlobalStateVariables GSvars="21">
+        <GSVar var="1">
+          <Label>CALFMORT</Label>
+          <InitState>=23.68+2.86*NRAND</InitState>
+          <TransState>=GS1</TransState>
+        </GSVar>
+        <GSVar var="2">
+          <Label>SADEATHS</Label>
+          <InitState>=1.83+0.48*NRAND</InitState>
+          <TransState>=GS2</TransState>
+        </GSVar>
+        <GSVar var="3">
+          <Label>ADDEATHS</Label>
+          <InitState>=1.02+0.23*NRAND</InitState>
+          <TransState>=GS3</TransState>
+        </GSVar>
+        <GSVar var="4">
+          <Label>OLDMDEATHSB</Label>
+          <InitState>=0.451+0.124*NRAND</InitState>
+          <TransState>=GS4</TransState>
+        </GSVar>
+        <GSVar var="5">
+          <Label>OLDFDEATHS</Label>
+          <InitState>=3.56+0.91*NRAND</InitState>
+          <TransState>=GS5</TransState>
+        </GSVar>
+        <GSVar var="6">
+          <Label>PLOSS</Label>
+          <InitState>0.33</InitState>
+          <TransState>=GS6</TransState>
+        </GSVar>
+        <GSVar var="7">
+          <Label>SAMORT</Label>
+          <InitState>=SADEATHS/PLOSS</InitState>
+          <TransState>=GS7</TransState>
+        </GSVar>
+        <GSVar var="8">
+          <Label>ADMORT</Label>
+          <InitState>=ADDEATHS/PLOSS</InitState>
+          <TransState>=GS8</TransState>
+        </GSVar>
+        <GSVar var="9">
+          <Label>OLDFMORT</Label>
+          <InitState>=OLDFDEATHS/PLOSS</InitState>
+          <TransState>=GS9</TransState>
+        </GSVar>
+        <GSVar var="10">
+          <Label>OLDMMORTA</Label>
+          <InitState>=ADMORT</InitState>
+          <TransState>=GS10</TransState>
+        </GSVar>
+        <GSVar var="11">
+          <Label>OLDMMORTB</Label>
+          <InitState>=(OLDMDEATHSB/PLOSS)</InitState>
+          <TransState>=GS11</TransState>
+        </GSVar>
+        <GSVar var="12">
+          <Label>EVCM</Label>
+          <InitState>7.81</InitState>
+          <TransState>=GS12</TransState>
+        </GSVar>
+        <GSVar var="13">
+          <Label>EVSAMORT</Label>
+          <InitState>2.1</InitState>
+          <TransState>=GS13</TransState>
+        </GSVar>
+        <GSVar var="14">
+          <Label>EVADMORT</Label>
+          <InitState>0</InitState>
+          <TransState>=GS14</TransState>
+        </GSVar>
+        <GSVar var="15">
+          <Label>EVOLDFMORT</Label>
+          <InitState>0</InitState>
+          <TransState>=GS15</TransState>
+        </GSVar>
+        <GSVar var="16">
+          <Label>EVOLDMMORT</Label>
+          <InitState>2.91</InitState>
+          <TransState>=GS16</TransState>
+        </GSVar>
+        <GSVar var="17">
+          <Label>BRYOUNGB</Label>
+          <InitState>=4.344+0.014*NRAND</InitState>
+          <TransState>=GS17</TransState>
+        </GSVar>
+        <GSVar var="18">
+          <Label>BRPEAK</Label>
+          <InitState>=29.42+2.16*NRAND</InitState>
+          <TransState>=GS18</TransState>
+        </GSVar>
+        <GSVar var="19">
+          <Label>BROLDB</Label>
+          <InitState>=-1.165+0.009*NRAND</InitState>
+          <TransState>=GS19</TransState>
+        </GSVar>
+        <GSVar var="20">
+          <Label>EVBRPEAK</Label>
+          <InitState>7.97</InitState>
+          <TransState>=GS20</TransState>
+        </GSVar>
+        <GSVar var="21">
+          <Label>EVBROLD</Label>
+          <InitState>3.08</InitState>
+          <TransState>=GS21</TransState>
+        </GSVar>
+      </GlobalStateVariables>
+      <PopulationStateVariables PSvars="0" />
+      <IndividualStateVariables ISvars="0" />
+    </StateVariables>
+    <DefaultVarValues nDefs="0" />
+    <ReproductiveSystem scenario="2">
+      <Monogamy>False</Monogamy>
+      <Polygamy>True</Polygamy>
+      <LTMonogamy>False</LTMonogamy>
+      <LTPolygamy>False</LTPolygamy>
+      <Hermaphroditic>False</Hermaphroditic>
+      <FemaleBreedingAge>6</FemaleBreedingAge>
+      <MaleBreedingAge>11</MaleBreedingAge>
+      <FemaleLastBreedingAge>48</FemaleLastBreedingAge>
+      <MaleLastBreedingAge>40</MaleLastBreedingAge>
+      <MaximumAge>68</MaximumAge>
+      <maxBroods>1</maxBroods>
+      <maxBroodSize>1</maxBroodSize>
+      <UseNormal>False</UseNormal>
+      <UseFullDistr>True</UseFullDistr>
+      <SexRatio>50</SexRatio>
+      <DepOffspring>0</DepOffspring>
+    </ReproductiveSystem>
+    <StableAgeDistribution scenario="2">Proportional</StableAgeDistribution>
+    <TranslocateOption scenario="2">
+      <Translocate>False</Translocate>
+      <TranslocationSurvival>50</TranslocationSurvival>
+      <TranslocationRelSurvival>100</TranslocationRelSurvival>
+      <TranslocationIf>1</TranslocationIf>
+      <ISHarvest>0</ISHarvest>
+    </TranslocateOption>
+    <GeneticManagement scenario="2">
+      <ImportStudbook>False</ImportStudbook>
+      <StudbookFile>
+      </StudbookFile>
+      <StudbookAppend>False</StudbookAppend>
+      <NeutralLoci>1</NeutralLoci>
+      <Tally1Locus>True</Tally1Locus>
+      <TallyOtherLoci>False</TallyOtherLoci>
+      <TallyAllLoci>False</TallyAllLoci>
+      <ImportAlleleFreqsFile>False</ImportAlleleFreqsFile>
+      <AlleleFreqsFile>
+      </AlleleFreqsFile>
+      <Freq2Kinships>False</Freq2Kinships>
+      <OutputGenePop>False</OutputGenePop>
+      <OutputAlleleFreqFile>False</OutputAlleleFreqFile>
+      <mkGD>False</mkGD>
+      <mkGDist>False</mkGDist>
+      <MutationLoci>0</MutationLoci>
+      <MutationRate>0</MutationRate>
+      <MateTriesIS>0</MateTriesIS>
+    </GeneticManagement>
+    <PopulationRates scenario="2">
+      <Population pop="1">
+        <Label>Sarasota</Label>
+        <PopStateVariables pop="1" />
+        <DensityDependence pop="1">
+          <DDRepro>False</DDRepro>
+          <DDP0>50</DDP0>
+          <DDPK>25</DDPK>
+          <DDAllee>1</DDAllee>
+          <DDSlope>2</DDSlope>
+        </DensityDependence>
+        <ReproductiveRates pop="1">
+          <PercentBreed>=BRPEAK+(A&lt;12)*BRYOUNGB*(A-12)+(A&gt;25)*BROLDB*(A-25)</PercentBreed>
+          <EVBreed>=(A&gt;11)*(A&lt;26)*EVBRPEAK+(A&gt;25)*EVBROLD</EVBreed>
+          <Brood n="0">0</Brood>
+          <Brood n="1">100</Brood>
+          <BroodMean>2.5</BroodMean>
+          <BroodSD>1</BroodSD>
+          <BroodSize size="1">100</BroodSize>
+        </ReproductiveRates>
+        <MortalityRates pop="1">
+          <FemaleMort age="0">=CALFMORT</FemaleMort>
+          <EVFemaleMort age="0">=EVCM</EVFemaleMort>
+          <FemaleMort age="1">=SAMORT</FemaleMort>
+          <EVFemaleMort age="1">=EVSAMORT</EVFemaleMort>
+          <FemaleMort age="2">=SAMORT</FemaleMort>
+          <EVFemaleMort age="2">=EVSAMORT</EVFemaleMort>
+          <FemaleMort age="3">=SAMORT</FemaleMort>
+          <EVFemaleMort age="3">=EVSAMORT</EVFemaleMort>
+          <FemaleMort age="4">=SAMORT</FemaleMort>
+          <EVFemaleMort age="4">=EVSAMORT</EVFemaleMort>
+          <FemaleMort age="5">=ADMORT</FemaleMort>
+          <EVFemaleMort age="5">=EVADMORT</EVFemaleMort>
+          <FemaleMort age="6">=ADMORT*(A&lt;=25)+(A&gt;25)*OLDFMORT</FemaleMort>
+          <EVFemaleMort age="6">=EVADMORT*(A&lt;=25)+(A&gt;25)*EVOLDFMORT</EVFemaleMort>
+          <MaleMort age="0">=CALFMORT</MaleMort>
+          <EVMaleMort age="0">=EVCM</EVMaleMort>
+          <MaleMort age="1">=SAMORT</MaleMort>
+          <EVMaleMort age="1">=EVSAMORT</EVMaleMort>
+          <MaleMort age="2">=SAMORT</MaleMort>
+          <EVMaleMort age="2">=EVSAMORT</EVMaleMort>
+          <MaleMort age="3">=SAMORT</MaleMort>
+          <EVMaleMort age="3">=EVSAMORT</EVMaleMort>
+          <MaleMort age="4">=SAMORT</MaleMort>
+          <EVMaleMort age="4">=EVSAMORT</EVMaleMort>
+          <MaleMort age="5">=ADMORT</MaleMort>
+          <EVMaleMort age="5">=EVADMORT</EVMaleMort>
+          <MaleMort age="6">=ADMORT</MaleMort>
+          <EVMaleMort age="6">=EVADMORT</EVMaleMort>
+          <MaleMort age="7">=ADMORT</MaleMort>
+          <EVMaleMort age="7">=EVADMORT</EVMaleMort>
+          <MaleMort age="8">=ADMORT</MaleMort>
+          <EVMaleMort age="8">=EVADMORT</EVMaleMort>
+          <MaleMort age="9">=ADMORT</MaleMort>
+          <EVMaleMort age="9">=EVADMORT</EVMaleMort>
+          <MaleMort age="10">=ADMORT</MaleMort>
+          <EVMaleMort age="10">=EVADMORT</EVMaleMort>
+          <MaleMort age="11">=100*(A&gt;53)+ADMORT*(A&lt;=25)+(A&gt;25)*(OLDMMORTA+OLDMMORTB*(A-25))</MaleMort>
+          <EVMaleMort age="11">=EVADMORT*(A&lt;=25)+(A&gt;25)*EVOLDMMORT</EVMaleMort>
+        </MortalityRates>
+        <Monopolization pop="1">
+          <PercentMales>100</PercentMales>
+        </Monopolization>
+        <InitialPopulationSize pop="1">
+          <InitialN>91</InitialN>
+          <FemalesAge age="0">0</FemalesAge>
+          <FemalesAge age="1">309</FemalesAge>
+          <FemalesAge age="2">280</FemalesAge>
+          <FemalesAge age="3">254</FemalesAge>
+          <FemalesAge age="4">229</FemalesAge>
+          <FemalesAge age="5">207</FemalesAge>
+          <FemalesAge age="6">198</FemalesAge>
+          <FemalesAge age="7">191</FemalesAge>
+          <FemalesAge age="8">183</FemalesAge>
+          <FemalesAge age="9">175</FemalesAge>
+          <FemalesAge age="10">168</FemalesAge>
+          <FemalesAge age="11">161</FemalesAge>
+          <FemalesAge age="12">154</FemalesAge>
+          <FemalesAge age="13">148</FemalesAge>
+          <FemalesAge age="14">142</FemalesAge>
+          <FemalesAge age="15">136</FemalesAge>
+          <FemalesAge age="16">131</FemalesAge>
+          <FemalesAge age="17">125</FemalesAge>
+          <FemalesAge age="18">120</FemalesAge>
+          <FemalesAge age="19">115</FemalesAge>
+          <FemalesAge age="20">111</FemalesAge>
+          <FemalesAge age="21">106</FemalesAge>
+          <FemalesAge age="22">101</FemalesAge>
+          <FemalesAge age="23">97</FemalesAge>
+          <FemalesAge age="24">94</FemalesAge>
+          <FemalesAge age="25">89</FemalesAge>
+          <FemalesAge age="26">86</FemalesAge>
+          <FemalesAge age="27">80</FemalesAge>
+          <FemalesAge age="28">73</FemalesAge>
+          <FemalesAge age="29">69</FemalesAge>
+          <FemalesAge age="30">63</FemalesAge>
+          <FemalesAge age="31">59</FemalesAge>
+          <FemalesAge age="32">54</FemalesAge>
+          <FemalesAge age="33">50</FemalesAge>
+          <FemalesAge age="34">47</FemalesAge>
+          <FemalesAge age="35">43</FemalesAge>
+          <FemalesAge age="36">41</FemalesAge>
+          <FemalesAge age="37">37</FemalesAge>
+          <FemalesAge age="38">34</FemalesAge>
+          <FemalesAge age="39">32</FemalesAge>
+          <FemalesAge age="40">30</FemalesAge>
+          <FemalesAge age="41">27</FemalesAge>
+          <FemalesAge age="42">26</FemalesAge>
+          <FemalesAge age="43">23</FemalesAge>
+          <FemalesAge age="44">22</FemalesAge>
+          <FemalesAge age="45">20</FemalesAge>
+          <FemalesAge age="46">19</FemalesAge>
+          <FemalesAge age="47">17</FemalesAge>
+          <FemalesAge age="48">17</FemalesAge>
+          <FemalesAge age="49">15</FemalesAge>
+          <FemalesAge age="50">13</FemalesAge>
+          <FemalesAge age="51">13</FemalesAge>
+          <FemalesAge age="52">12</FemalesAge>
+          <FemalesAge age="53">11</FemalesAge>
+          <FemalesAge age="54">10</FemalesAge>
+          <FemalesAge age="55">10</FemalesAge>
+          <FemalesAge age="56">9</FemalesAge>
+          <FemalesAge age="57">8</FemalesAge>
+          <FemalesAge age="58">7</FemalesAge>
+          <FemalesAge age="59">7</FemalesAge>
+          <FemalesAge age="60">7</FemalesAge>
+          <FemalesAge age="61">6</FemalesAge>
+          <FemalesAge age="62">5</FemalesAge>
+          <FemalesAge age="63">5</FemalesAge>
+          <FemalesAge age="64">5</FemalesAge>
+          <FemalesAge age="65">5</FemalesAge>
+          <FemalesAge age="66">4</FemalesAge>
+          <FemalesAge age="67">4</FemalesAge>
+          <FemalesAge age="68">3</FemalesAge>
+          <MalesAge age="0">0</MalesAge>
+          <MalesAge age="1">309</MalesAge>
+          <MalesAge age="2">280</MalesAge>
+          <MalesAge age="3">254</MalesAge>
+          <MalesAge age="4">229</MalesAge>
+          <MalesAge age="5">207</MalesAge>
+          <MalesAge age="6">198</MalesAge>
+          <MalesAge age="7">191</MalesAge>
+          <MalesAge age="8">183</MalesAge>
+          <MalesAge age="9">175</MalesAge>
+          <MalesAge age="10">168</MalesAge>
+          <MalesAge age="11">161</MalesAge>
+          <MalesAge age="12">154</MalesAge>
+          <MalesAge age="13">148</MalesAge>
+          <MalesAge age="14">142</MalesAge>
+          <MalesAge age="15">136</MalesAge>
+          <MalesAge age="16">131</MalesAge>
+          <MalesAge age="17">125</MalesAge>
+          <MalesAge age="18">120</MalesAge>
+          <MalesAge age="19">115</MalesAge>
+          <MalesAge age="20">111</MalesAge>
+          <MalesAge age="21">106</MalesAge>
+          <MalesAge age="22">101</MalesAge>
+          <MalesAge age="23">97</MalesAge>
+          <MalesAge age="24">94</MalesAge>
+          <MalesAge age="25">89</MalesAge>
+          <MalesAge age="26">86</MalesAge>
+          <MalesAge age="27">82</MalesAge>
+          <MalesAge age="28">76</MalesAge>
+          <MalesAge age="29">72</MalesAge>
+          <MalesAge age="30">66</MalesAge>
+          <MalesAge age="31">61</MalesAge>
+          <MalesAge age="32">55</MalesAge>
+          <MalesAge age="33">49</MalesAge>
+          <MalesAge age="34">44</MalesAge>
+          <MalesAge age="35">38</MalesAge>
+          <MalesAge age="36">34</MalesAge>
+          <MalesAge age="37">29</MalesAge>
+          <MalesAge age="38">25</MalesAge>
+          <MalesAge age="39">21</MalesAge>
+          <MalesAge age="40">17</MalesAge>
+          <MalesAge age="41">15</MalesAge>
+          <MalesAge age="42">12</MalesAge>
+          <MalesAge age="43">10</MalesAge>
+          <MalesAge age="44">7</MalesAge>
+          <MalesAge age="45">6</MalesAge>
+          <MalesAge age="46">5</MalesAge>
+          <MalesAge age="47">4</MalesAge>
+          <MalesAge age="48">3</MalesAge>
+          <MalesAge age="49">2</MalesAge>
+          <MalesAge age="50">2</MalesAge>
+          <MalesAge age="51">1</MalesAge>
+          <MalesAge age="52">1</MalesAge>
+          <MalesAge age="53">0</MalesAge>
+          <MalesAge age="54">1</MalesAge>
+          <MalesAge age="55">0</MalesAge>
+          <MalesAge age="56">0</MalesAge>
+          <MalesAge age="57">0</MalesAge>
+          <MalesAge age="58">0</MalesAge>
+          <MalesAge age="59">0</MalesAge>
+          <MalesAge age="60">0</MalesAge>
+          <MalesAge age="61">0</MalesAge>
+          <MalesAge age="62">0</MalesAge>
+          <MalesAge age="63">0</MalesAge>
+          <MalesAge age="64">0</MalesAge>
+          <MalesAge age="65">0</MalesAge>
+          <MalesAge age="66">0</MalesAge>
+          <MalesAge age="67">0</MalesAge>
+          <MalesAge age="68">0</MalesAge>
+        </InitialPopulationSize>
+        <CarryingCapacity pop="1">
+          <K>200</K>
+          <EVK>0</EVK>
+          <Ktrend>False</Ktrend>
+          <Kyears>5</Kyears>
+          <Kchange>-10</Kchange>
+          <Kcriteria>False</Kcriteria>
+          <Ktest>=N</Ktest>
+          <Kpriority>0</Kpriority>
+          <AllowK>False</AllowK>
+          <KAllow>1</KAllow>
+        </CarryingCapacity>
+        <Harvest pop="1">
+          <Harvest>True</Harvest>
+          <StartYear>1</StartYear>
+          <EndYear>35</EndYear>
+          <Interval>1</Interval>
+          <HarvCriteria>1</HarvCriteria>
+          <IHarvCriteria>1</IHarvCriteria>
+          <FemalesAge age="0">0</FemalesAge>
+          <FemalesAge age="1">=(Y=1)+(Y=18)+(Y=25)</FemalesAge>
+          <FemalesAge age="2">=(Y=19)</FemalesAge>
+          <FemalesAge age="3">=(Y=23)</FemalesAge>
+          <FemalesAge age="4">0</FemalesAge>
+          <FemalesAge age="5">0</FemalesAge>
+          <FemalesAge age="6">=(Y=11)+(Y=27)</FemalesAge>
+          <MalesAge age="0">0</MalesAge>
+          <MalesAge age="1">0</MalesAge>
+          <MalesAge age="2">=(Y=29)+(Y=34)</MalesAge>
+          <MalesAge age="3">0</MalesAge>
+          <MalesAge age="4">0</MalesAge>
+          <MalesAge age="5">0</MalesAge>
+          <MalesAge age="6">0</MalesAge>
+          <MalesAge age="7">0</MalesAge>
+          <MalesAge age="8">=(Y=21)</MalesAge>
+          <MalesAge age="9">0</MalesAge>
+          <MalesAge age="10">=(Y=31)</MalesAge>
+          <MalesAge age="11">=(Y=7)+(Y=22)</MalesAge>
+        </Harvest>
+        <Supplementation pop="1">
+          <Supplement>False</Supplement>
+          <StartYear>1</StartYear>
+          <EndYear>100</EndYear>
+          <Interval>1</Interval>
+          <Criteria>1</Criteria>
+          <FemalesAge age="0">0</FemalesAge>
+          <FemalesAge age="1">0</FemalesAge>
+          <FemalesAge age="2">0</FemalesAge>
+          <FemalesAge age="3">0</FemalesAge>
+          <FemalesAge age="4">0</FemalesAge>
+          <FemalesAge age="5">0</FemalesAge>
+          <FemalesAge age="6">0</FemalesAge>
+          <MalesAge age="0">0</MalesAge>
+          <MalesAge age="1">0</MalesAge>
+          <MalesAge age="2">0</MalesAge>
+          <MalesAge age="3">0</MalesAge>
+          <MalesAge age="4">0</MalesAge>
+          <MalesAge age="5">0</MalesAge>
+          <MalesAge age="6">0</MalesAge>
+          <MalesAge age="7">0</MalesAge>
+          <MalesAge age="8">0</MalesAge>
+          <MalesAge age="9">0</MalesAge>
+          <MalesAge age="10">0</MalesAge>
+          <MalesAge age="11">0</MalesAge>
+        </Supplementation>
+        <GeneticManagement pop="1">
+          <BreedMaintainK>False</BreedMaintainK>
+          <AvoidInbr>False</AvoidInbr>
+          <AvoidInbrF>1</AvoidInbrF>
+          <PairMKdynamic>False</PairMKdynamic>
+          <PairMKStatic>False</PairMKStatic>
+          <SetKin>0</SetKin>
+          <MaxNMates>0</MaxNMates>
+          <NumTriesFindMate>10</NumTriesFindMate>
+        </GeneticManagement>
+      </Population>
+    </PopulationRates>
+  </Scenario>
+  <Scenario scenario="3">
+    <Notes scenario="3">
+      <Scene>Start at 1985 N = 91, with Stable Age Distribution.
+
+No Harvest of dolphins that were rescued
+
+No Immigration
+Mortality = Deaths/.33</Scene>
+      <Species>
+      </Species>
+      <StateVar>
+      </StateVar>
+      <Dispersal>Move a fixed number of individuals to test the effect on TBRE of different immigration rates.
+
+Note that Vortex uses probabilistic rounding for non-integer values of migrants.</Dispersal>
+      <ReproSystem>
+      </ReproSystem>
+      <ReproRates>
+      </ReproRates>
+      <Mortality>
+      </Mortality>
+      <Catastrophe>
+      </Catastrophe>
+      <MateMonop>
+      </MateMonop>
+      <InitN>
+      </InitN>
+      <K>
+      </K>
+      <Harvest>
+      </Harvest>
+      <Supplementation>
+      </Supplementation>
+      <Genetics>
+      </Genetics>
+    </Notes>
+    <Settings scenario="3">
+      <Name>Intervention1985to2070</Name>
+      <ST>False</ST>
+      <nRuns>10000</nRuns>
+      <nYears>85</nYears>
+      <YrDays>365</YrDays>
+      <ExtDef1Sex>True</ExtDef1Sex>
+      <ExtDefFunc>False</ExtDefFunc>
+      <ExtDefN>
+      </ExtDefN>
+      <nPops>1</nPops>
+      <PopBase>False</PopBase>
+      <vMacroFile>
+      </vMacroFile>
+      <Rfile>
+      </Rfile>
+      <AnimListFlag>0</AnimListFlag>
+      <fullAnimList>0</fullAnimList>
+      <censusRuns>0</censusRuns>
+      <outHFlag>False</outHFlag>
+      <outGSvars>0</outGSvars>
+      <outPSvars>0</outPSvars>
+      <GDinclude>False</GDinclude>
+      <PSinclude>False</PSinclude>
+      <ExcludeLastPop>True</ExcludeLastPop>
+      <delayMort0>False</delayMort0>
+    </Settings>
+    <ModelSteps scenario="3">
+      <Step>EV</Step>
+      <Step>Breed</Step>
+      <Step>Mortality</Step>
+      <Step>Age</Step>
+      <Step>Disperse</Step>
+      <Step>Harvest</Step>
+      <Step>Supplement</Step>
+      <Step>rCalc</Step>
+      <Step>UpdateVars</Step>
+      <Step>Census</Step>
+    </ModelSteps>
+    <SpeciesDescription scenario="3">
+      <InbrDepr>False</InbrDepr>
+      <LethalEquiv>6.29</LethalEquiv>
+      <PercentLethals>50</PercentLethals>
+      <EVldcorrelation>0.5</EVldcorrelation>
+      <EVcorrelation>0.5</EVcorrelation>
+      <useBetaEV>False</useBetaEV>
+      <Catastrophes nCats="0" />
+    </SpeciesDescription>
+    <StateVariables scenario="3">
+      <GlobalStateVariables GSvars="21">
+        <GSVar var="1">
+          <Label>CALFMORT</Label>
+          <InitState>=23.68+2.86*NRAND</InitState>
+          <TransState>=GS1</TransState>
+        </GSVar>
+        <GSVar var="2">
+          <Label>SADEATHS</Label>
+          <InitState>=1.83+0.48*NRAND</InitState>
+          <TransState>=GS2</TransState>
+        </GSVar>
+        <GSVar var="3">
+          <Label>ADDEATHS</Label>
+          <InitState>=1.02+0.23*NRAND</InitState>
+          <TransState>=GS3</TransState>
+        </GSVar>
+        <GSVar var="4">
+          <Label>OLDMDEATHSB</Label>
+          <InitState>=0.451+0.124*NRAND</InitState>
+          <TransState>=GS4</TransState>
+        </GSVar>
+        <GSVar var="5">
+          <Label>OLDFDEATHS</Label>
+          <InitState>=3.56+0.91*NRAND</InitState>
+          <TransState>=GS5</TransState>
+        </GSVar>
+        <GSVar var="6">
+          <Label>PLOSS</Label>
+          <InitState>0.33</InitState>
+          <TransState>=GS6</TransState>
+        </GSVar>
+        <GSVar var="7">
+          <Label>SAMORT</Label>
+          <InitState>=SADEATHS/PLOSS</InitState>
+          <TransState>=GS7</TransState>
+        </GSVar>
+        <GSVar var="8">
+          <Label>ADMORT</Label>
+          <InitState>=ADDEATHS/PLOSS</InitState>
+          <TransState>=GS8</TransState>
+        </GSVar>
+        <GSVar var="9">
+          <Label>OLDFMORT</Label>
+          <InitState>=OLDFDEATHS/PLOSS</InitState>
+          <TransState>=GS9</TransState>
+        </GSVar>
+        <GSVar var="10">
+          <Label>OLDMMORTA</Label>
+          <InitState>=ADMORT</InitState>
+          <TransState>=GS10</TransState>
+        </GSVar>
+        <GSVar var="11">
+          <Label>OLDMMORTB</Label>
+          <InitState>=(OLDMDEATHSB/PLOSS)</InitState>
+          <TransState>=GS11</TransState>
+        </GSVar>
+        <GSVar var="12">
+          <Label>EVCM</Label>
+          <InitState>7.81</InitState>
+          <TransState>=GS12</TransState>
+        </GSVar>
+        <GSVar var="13">
+          <Label>EVSAMORT</Label>
+          <InitState>2.1</InitState>
+          <TransState>=GS13</TransState>
+        </GSVar>
+        <GSVar var="14">
+          <Label>EVADMORT</Label>
+          <InitState>0</InitState>
+          <TransState>=GS14</TransState>
+        </GSVar>
+        <GSVar var="15">
+          <Label>EVOLDFMORT</Label>
+          <InitState>0</InitState>
+          <TransState>=GS15</TransState>
+        </GSVar>
+        <GSVar var="16">
+          <Label>EVOLDMMORT</Label>
+          <InitState>2.91</InitState>
+          <TransState>=GS16</TransState>
+        </GSVar>
+        <GSVar var="17">
+          <Label>BRYOUNGB</Label>
+          <InitState>=4.344+0.014*NRAND</InitState>
+          <TransState>=GS17</TransState>
+        </GSVar>
+        <GSVar var="18">
+          <Label>BRPEAK</Label>
+          <InitState>=29.42+2.16*NRAND</InitState>
+          <TransState>=GS18</TransState>
+        </GSVar>
+        <GSVar var="19">
+          <Label>BROLDB</Label>
+          <InitState>=-1.165+0.009*NRAND</InitState>
+          <TransState>=GS19</TransState>
+        </GSVar>
+        <GSVar var="20">
+          <Label>EVBRPEAK</Label>
+          <InitState>7.97</InitState>
+          <TransState>=GS20</TransState>
+        </GSVar>
+        <GSVar var="21">
+          <Label>EVBROLD</Label>
+          <InitState>3.08</InitState>
+          <TransState>=GS21</TransState>
+        </GSVar>
+      </GlobalStateVariables>
+      <PopulationStateVariables PSvars="0" />
+      <IndividualStateVariables ISvars="0" />
+    </StateVariables>
+    <DefaultVarValues nDefs="0" />
+    <ReproductiveSystem scenario="3">
+      <Monogamy>False</Monogamy>
+      <Polygamy>True</Polygamy>
+      <LTMonogamy>False</LTMonogamy>
+      <LTPolygamy>False</LTPolygamy>
+      <Hermaphroditic>False</Hermaphroditic>
+      <FemaleBreedingAge>6</FemaleBreedingAge>
+      <MaleBreedingAge>11</MaleBreedingAge>
+      <FemaleLastBreedingAge>48</FemaleLastBreedingAge>
+      <MaleLastBreedingAge>40</MaleLastBreedingAge>
+      <MaximumAge>68</MaximumAge>
+      <maxBroods>1</maxBroods>
+      <maxBroodSize>1</maxBroodSize>
+      <UseNormal>False</UseNormal>
+      <UseFullDistr>True</UseFullDistr>
+      <SexRatio>50</SexRatio>
+      <DepOffspring>0</DepOffspring>
+    </ReproductiveSystem>
+    <StableAgeDistribution scenario="3">Proportional</StableAgeDistribution>
+    <TranslocateOption scenario="3">
+      <Translocate>False</Translocate>
+      <TranslocationSurvival>50</TranslocationSurvival>
+      <TranslocationRelSurvival>100</TranslocationRelSurvival>
+      <TranslocationIf>1</TranslocationIf>
+      <ISHarvest>0</ISHarvest>
+    </TranslocateOption>
+    <GeneticManagement scenario="3">
+      <ImportStudbook>False</ImportStudbook>
+      <StudbookFile>
+      </StudbookFile>
+      <StudbookAppend>False</StudbookAppend>
+      <NeutralLoci>1</NeutralLoci>
+      <Tally1Locus>True</Tally1Locus>
+      <TallyOtherLoci>False</TallyOtherLoci>
+      <TallyAllLoci>False</TallyAllLoci>
+      <ImportAlleleFreqsFile>False</ImportAlleleFreqsFile>
+      <AlleleFreqsFile>
+      </AlleleFreqsFile>
+      <Freq2Kinships>False</Freq2Kinships>
+      <OutputGenePop>False</OutputGenePop>
+      <OutputAlleleFreqFile>False</OutputAlleleFreqFile>
+      <mkGD>False</mkGD>
+      <mkGDist>False</mkGDist>
+      <MutationLoci>0</MutationLoci>
+      <MutationRate>0</MutationRate>
+      <MateTriesIS>0</MateTriesIS>
+    </GeneticManagement>
+    <PopulationRates scenario="3">
+      <Population pop="1">
+        <Label>Sarasota</Label>
+        <PopStateVariables pop="1" />
+        <DensityDependence pop="1">
+          <DDRepro>False</DDRepro>
+          <DDP0>50</DDP0>
+          <DDPK>25</DDPK>
+          <DDAllee>1</DDAllee>
+          <DDSlope>2</DDSlope>
+        </DensityDependence>
+        <ReproductiveRates pop="1">
+          <PercentBreed>=BRPEAK+(A&lt;12)*BRYOUNGB*(A-12)+(A&gt;25)*BROLDB*(A-25)</PercentBreed>
+          <EVBreed>=(A&gt;11)*(A&lt;26)*EVBRPEAK+(A&gt;25)*EVBROLD</EVBreed>
+          <Brood n="0">0</Brood>
+          <Brood n="1">100</Brood>
+          <BroodMean>2.5</BroodMean>
+          <BroodSD>1</BroodSD>
+          <BroodSize size="1">100</BroodSize>
+        </ReproductiveRates>
+        <MortalityRates pop="1">
+          <FemaleMort age="0">=CALFMORT</FemaleMort>
+          <EVFemaleMort age="0">=EVCM</EVFemaleMort>
+          <FemaleMort age="1">=SAMORT</FemaleMort>
+          <EVFemaleMort age="1">=EVSAMORT</EVFemaleMort>
+          <FemaleMort age="2">=SAMORT</FemaleMort>
+          <EVFemaleMort age="2">=EVSAMORT</EVFemaleMort>
+          <FemaleMort age="3">=SAMORT</FemaleMort>
+          <EVFemaleMort age="3">=EVSAMORT</EVFemaleMort>
+          <FemaleMort age="4">=SAMORT</FemaleMort>
+          <EVFemaleMort age="4">=EVSAMORT</EVFemaleMort>
+          <FemaleMort age="5">=ADMORT</FemaleMort>
+          <EVFemaleMort age="5">=EVADMORT</EVFemaleMort>
+          <FemaleMort age="6">=ADMORT*(A&lt;=25)+(A&gt;25)*OLDFMORT</FemaleMort>
+          <EVFemaleMort age="6">=EVADMORT*(A&lt;=25)+(A&gt;25)*EVOLDFMORT</EVFemaleMort>
+          <MaleMort age="0">=CALFMORT</MaleMort>
+          <EVMaleMort age="0">=EVCM</EVMaleMort>
+          <MaleMort age="1">=SAMORT</MaleMort>
+          <EVMaleMort age="1">=EVSAMORT</EVMaleMort>
+          <MaleMort age="2">=SAMORT</MaleMort>
+          <EVMaleMort age="2">=EVSAMORT</EVMaleMort>
+          <MaleMort age="3">=SAMORT</MaleMort>
+          <EVMaleMort age="3">=EVSAMORT</EVMaleMort>
+          <MaleMort age="4">=SAMORT</MaleMort>
+          <EVMaleMort age="4">=EVSAMORT</EVMaleMort>
+          <MaleMort age="5">=ADMORT</MaleMort>
+          <EVMaleMort age="5">=EVADMORT</EVMaleMort>
+          <MaleMort age="6">=ADMORT</MaleMort>
+          <EVMaleMort age="6">=EVADMORT</EVMaleMort>
+          <MaleMort age="7">=ADMORT</MaleMort>
+          <EVMaleMort age="7">=EVADMORT</EVMaleMort>
+          <MaleMort age="8">=ADMORT</MaleMort>
+          <EVMaleMort age="8">=EVADMORT</EVMaleMort>
+          <MaleMort age="9">=ADMORT</MaleMort>
+          <EVMaleMort age="9">=EVADMORT</EVMaleMort>
+          <MaleMort age="10">=ADMORT</MaleMort>
+          <EVMaleMort age="10">=EVADMORT</EVMaleMort>
+          <MaleMort age="11">=100*(A&gt;53)+ADMORT*(A&lt;=25)+(A&gt;25)*(OLDMMORTA+OLDMMORTB*(A-25))</MaleMort>
+          <EVMaleMort age="11">=EVADMORT*(A&lt;=25)+(A&gt;25)*EVOLDMMORT</EVMaleMort>
+        </MortalityRates>
+        <Monopolization pop="1">
+          <PercentMales>100</PercentMales>
+        </Monopolization>
+        <InitialPopulationSize pop="1">
+          <InitialN>91</InitialN>
+          <FemalesAge age="0">0</FemalesAge>
+          <FemalesAge age="1">309</FemalesAge>
+          <FemalesAge age="2">280</FemalesAge>
+          <FemalesAge age="3">254</FemalesAge>
+          <FemalesAge age="4">229</FemalesAge>
+          <FemalesAge age="5">207</FemalesAge>
+          <FemalesAge age="6">198</FemalesAge>
+          <FemalesAge age="7">191</FemalesAge>
+          <FemalesAge age="8">183</FemalesAge>
+          <FemalesAge age="9">175</FemalesAge>
+          <FemalesAge age="10">168</FemalesAge>
+          <FemalesAge age="11">161</FemalesAge>
+          <FemalesAge age="12">154</FemalesAge>
+          <FemalesAge age="13">148</FemalesAge>
+          <FemalesAge age="14">142</FemalesAge>
+          <FemalesAge age="15">136</FemalesAge>
+          <FemalesAge age="16">131</FemalesAge>
+          <FemalesAge age="17">125</FemalesAge>
+          <FemalesAge age="18">120</FemalesAge>
+          <FemalesAge age="19">115</FemalesAge>
+          <FemalesAge age="20">111</FemalesAge>
+          <FemalesAge age="21">106</FemalesAge>
+          <FemalesAge age="22">101</FemalesAge>
+          <FemalesAge age="23">97</FemalesAge>
+          <FemalesAge age="24">94</FemalesAge>
+          <FemalesAge age="25">89</FemalesAge>
+          <FemalesAge age="26">86</FemalesAge>
+          <FemalesAge age="27">80</FemalesAge>
+          <FemalesAge age="28">73</FemalesAge>
+          <FemalesAge age="29">69</FemalesAge>
+          <FemalesAge age="30">63</FemalesAge>
+          <FemalesAge age="31">59</FemalesAge>
+          <FemalesAge age="32">54</FemalesAge>
+          <FemalesAge age="33">50</FemalesAge>
+          <FemalesAge age="34">47</FemalesAge>
+          <FemalesAge age="35">43</FemalesAge>
+          <FemalesAge age="36">41</FemalesAge>
+          <FemalesAge age="37">37</FemalesAge>
+          <FemalesAge age="38">34</FemalesAge>
+          <FemalesAge age="39">32</FemalesAge>
+          <FemalesAge age="40">30</FemalesAge>
+          <FemalesAge age="41">27</FemalesAge>
+          <FemalesAge age="42">26</FemalesAge>
+          <FemalesAge age="43">23</FemalesAge>
+          <FemalesAge age="44">22</FemalesAge>
+          <FemalesAge age="45">20</FemalesAge>
+          <FemalesAge age="46">19</FemalesAge>
+          <FemalesAge age="47">17</FemalesAge>
+          <FemalesAge age="48">17</FemalesAge>
+          <FemalesAge age="49">15</FemalesAge>
+          <FemalesAge age="50">13</FemalesAge>
+          <FemalesAge age="51">13</FemalesAge>
+          <FemalesAge age="52">12</FemalesAge>
+          <FemalesAge age="53">11</FemalesAge>
+          <FemalesAge age="54">10</FemalesAge>
+          <FemalesAge age="55">10</FemalesAge>
+          <FemalesAge age="56">9</FemalesAge>
+          <FemalesAge age="57">8</FemalesAge>
+          <FemalesAge age="58">7</FemalesAge>
+          <FemalesAge age="59">7</FemalesAge>
+          <FemalesAge age="60">7</FemalesAge>
+          <FemalesAge age="61">6</FemalesAge>
+          <FemalesAge age="62">5</FemalesAge>
+          <FemalesAge age="63">5</FemalesAge>
+          <FemalesAge age="64">5</FemalesAge>
+          <FemalesAge age="65">5</FemalesAge>
+          <FemalesAge age="66">4</FemalesAge>
+          <FemalesAge age="67">4</FemalesAge>
+          <FemalesAge age="68">3</FemalesAge>
+          <MalesAge age="0">0</MalesAge>
+          <MalesAge age="1">309</MalesAge>
+          <MalesAge age="2">280</MalesAge>
+          <MalesAge age="3">254</MalesAge>
+          <MalesAge age="4">229</MalesAge>
+          <MalesAge age="5">207</MalesAge>
+          <MalesAge age="6">198</MalesAge>
+          <MalesAge age="7">191</MalesAge>
+          <MalesAge age="8">183</MalesAge>
+          <MalesAge age="9">175</MalesAge>
+          <MalesAge age="10">168</MalesAge>
+          <MalesAge age="11">161</MalesAge>
+          <MalesAge age="12">154</MalesAge>
+          <MalesAge age="13">148</MalesAge>
+          <MalesAge age="14">142</MalesAge>
+          <MalesAge age="15">136</MalesAge>
+          <MalesAge age="16">131</MalesAge>
+          <MalesAge age="17">125</MalesAge>
+          <MalesAge age="18">120</MalesAge>
+          <MalesAge age="19">115</MalesAge>
+          <MalesAge age="20">111</MalesAge>
+          <MalesAge age="21">106</MalesAge>
+          <MalesAge age="22">101</MalesAge>
+          <MalesAge age="23">97</MalesAge>
+          <MalesAge age="24">94</MalesAge>
+          <MalesAge age="25">89</MalesAge>
+          <MalesAge age="26">86</MalesAge>
+          <MalesAge age="27">82</MalesAge>
+          <MalesAge age="28">76</MalesAge>
+          <MalesAge age="29">72</MalesAge>
+          <MalesAge age="30">66</MalesAge>
+          <MalesAge age="31">61</MalesAge>
+          <MalesAge age="32">55</MalesAge>
+          <MalesAge age="33">49</MalesAge>
+          <MalesAge age="34">44</MalesAge>
+          <MalesAge age="35">38</MalesAge>
+          <MalesAge age="36">34</MalesAge>
+          <MalesAge age="37">29</MalesAge>
+          <MalesAge age="38">25</MalesAge>
+          <MalesAge age="39">21</MalesAge>
+          <MalesAge age="40">17</MalesAge>
+          <MalesAge age="41">15</MalesAge>
+          <MalesAge age="42">12</MalesAge>
+          <MalesAge age="43">10</MalesAge>
+          <MalesAge age="44">7</MalesAge>
+          <MalesAge age="45">6</MalesAge>
+          <MalesAge age="46">5</MalesAge>
+          <MalesAge age="47">4</MalesAge>
+          <MalesAge age="48">3</MalesAge>
+          <MalesAge age="49">2</MalesAge>
+          <MalesAge age="50">2</MalesAge>
+          <MalesAge age="51">1</MalesAge>
+          <MalesAge age="52">1</MalesAge>
+          <MalesAge age="53">0</MalesAge>
+          <MalesAge age="54">1</MalesAge>
+          <MalesAge age="55">0</MalesAge>
+          <MalesAge age="56">0</MalesAge>
+          <MalesAge age="57">0</MalesAge>
+          <MalesAge age="58">0</MalesAge>
+          <MalesAge age="59">0</MalesAge>
+          <MalesAge age="60">0</MalesAge>
+          <MalesAge age="61">0</MalesAge>
+          <MalesAge age="62">0</MalesAge>
+          <MalesAge age="63">0</MalesAge>
+          <MalesAge age="64">0</MalesAge>
+          <MalesAge age="65">0</MalesAge>
+          <MalesAge age="66">0</MalesAge>
+          <MalesAge age="67">0</MalesAge>
+          <MalesAge age="68">0</MalesAge>
+        </InitialPopulationSize>
+        <CarryingCapacity pop="1">
+          <K>200</K>
+          <EVK>0</EVK>
+          <Ktrend>False</Ktrend>
+          <Kyears>5</Kyears>
+          <Kchange>-10</Kchange>
+          <Kcriteria>False</Kcriteria>
+          <Ktest>=N</Ktest>
+          <Kpriority>0</Kpriority>
+          <AllowK>False</AllowK>
+          <KAllow>1</KAllow>
+        </CarryingCapacity>
+        <Harvest pop="1">
+          <Harvest>False</Harvest>
+          <StartYear>1</StartYear>
+          <EndYear>35</EndYear>
+          <Interval>1</Interval>
+          <HarvCriteria>1</HarvCriteria>
+          <IHarvCriteria>1</IHarvCriteria>
+          <FemalesAge age="0">0</FemalesAge>
+          <FemalesAge age="1">=(Y=1)+(Y=18)+(Y=25)</FemalesAge>
+          <FemalesAge age="2">=(Y=19)</FemalesAge>
+          <FemalesAge age="3">=(Y=23)</FemalesAge>
+          <FemalesAge age="4">0</FemalesAge>
+          <FemalesAge age="5">0</FemalesAge>
+          <FemalesAge age="6">=(Y=11)+(Y=27)</FemalesAge>
+          <MalesAge age="0">0</MalesAge>
+          <MalesAge age="1">0</MalesAge>
+          <MalesAge age="2">=(Y=29)+(Y=34)</MalesAge>
+          <MalesAge age="3">0</MalesAge>
+          <MalesAge age="4">0</MalesAge>
+          <MalesAge age="5">0</MalesAge>
+          <MalesAge age="6">0</MalesAge>
+          <MalesAge age="7">0</MalesAge>
+          <MalesAge age="8">=(Y=21)</MalesAge>
+          <MalesAge age="9">0</MalesAge>
+          <MalesAge age="10">=(Y=31)</MalesAge>
+          <MalesAge age="11">=(Y=7)+(Y=22)</MalesAge>
+        </Harvest>
+        <Supplementation pop="1">
+          <Supplement>False</Supplement>
+          <StartYear>1</StartYear>
+          <EndYear>100</EndYear>
+          <Interval>1</Interval>
+          <Criteria>1</Criteria>
+          <FemalesAge age="0">0</FemalesAge>
+          <FemalesAge age="1">0</FemalesAge>
+          <FemalesAge age="2">0</FemalesAge>
+          <FemalesAge age="3">0</FemalesAge>
+          <FemalesAge age="4">0</FemalesAge>
+          <FemalesAge age="5">0</FemalesAge>
+          <FemalesAge age="6">0</FemalesAge>
+          <MalesAge age="0">0</MalesAge>
+          <MalesAge age="1">0</MalesAge>
+          <MalesAge age="2">0</MalesAge>
+          <MalesAge age="3">0</MalesAge>
+          <MalesAge age="4">0</MalesAge>
+          <MalesAge age="5">0</MalesAge>
+          <MalesAge age="6">0</MalesAge>
+          <MalesAge age="7">0</MalesAge>
+          <MalesAge age="8">0</MalesAge>
+          <MalesAge age="9">0</MalesAge>
+          <MalesAge age="10">0</MalesAge>
+          <MalesAge age="11">0</MalesAge>
+        </Supplementation>
+        <GeneticManagement pop="1">
+          <BreedMaintainK>False</BreedMaintainK>
+          <AvoidInbr>False</AvoidInbr>
+          <AvoidInbrF>1</AvoidInbrF>
+          <PairMKdynamic>False</PairMKdynamic>
+          <PairMKStatic>False</PairMKStatic>
+          <SetKin>0</SetKin>
+          <MaxNMates>0</MaxNMates>
+          <NumTriesFindMate>10</NumTriesFindMate>
+        </GeneticManagement>
+      </Population>
+    </PopulationRates>
+  </Scenario>
+  <Scenario scenario="4">
+    <Notes scenario="4">
+      <Scene>Start at 1985 N = 91, with Stable Age Distribution.
+
+No Harvest of dolphins that were rescued
+
+No Immigration
+Mortality = Deaths/.33
+
+After 2020, each indiv has 0.425% chance of being lost without intervention. Removed via dispersal to "Lost" population</Scene>
+      <Species>
+      </Species>
+      <StateVar>
+      </StateVar>
+      <Dispersal>Note that Vortex uses probabilistic rounding for non-integer values of migrants.</Dispersal>
+      <ReproSystem>
+      </ReproSystem>
+      <ReproRates>
+      </ReproRates>
+      <Mortality>
+      </Mortality>
+      <Catastrophe>
+      </Catastrophe>
+      <MateMonop>
+      </MateMonop>
+      <InitN>
+      </InitN>
+      <K>
+      </K>
+      <Harvest>
+      </Harvest>
+      <Supplementation>
+      </Supplementation>
+      <Genetics>
+      </Genetics>
+    </Notes>
+    <Settings scenario="4">
+      <Name>NoIntervention1985to2070</Name>
+      <ST>False</ST>
+      <nRuns>10000</nRuns>
+      <nYears>85</nYears>
+      <YrDays>365</YrDays>
+      <ExtDef1Sex>True</ExtDef1Sex>
+      <ExtDefFunc>False</ExtDefFunc>
+      <ExtDefN>
+      </ExtDefN>
+      <nPops>2</nPops>
+      <PopBase>False</PopBase>
+      <vMacroFile>
+      </vMacroFile>
+      <Rfile>
+      </Rfile>
+      <AnimListFlag>0</AnimListFlag>
+      <fullAnimList>0</fullAnimList>
+      <censusRuns>0</censusRuns>
+      <outHFlag>False</outHFlag>
+      <outGSvars>0</outGSvars>
+      <outPSvars>0</outPSvars>
+      <GDinclude>False</GDinclude>
+      <PSinclude>False</PSinclude>
+      <ExcludeLastPop>True</ExcludeLastPop>
+      <delayMort0>False</delayMort0>
+    </Settings>
+    <ModelSteps scenario="4">
+      <Step>EV</Step>
+      <Step>Breed</Step>
+      <Step>Mortality</Step>
+      <Step>Age</Step>
+      <Step>Disperse</Step>
+      <Step>Harvest</Step>
+      <Step>Supplement</Step>
+      <Step>rCalc</Step>
+      <Step>UpdateVars</Step>
+      <Step>Census</Step>
+    </ModelSteps>
+    <SpeciesDescription scenario="4">
+      <InbrDepr>False</InbrDepr>
+      <LethalEquiv>6.29</LethalEquiv>
+      <PercentLethals>50</PercentLethals>
+      <EVldcorrelation>0.5</EVldcorrelation>
+      <EVcorrelation>0.5</EVcorrelation>
+      <useBetaEV>False</useBetaEV>
+      <Catastrophes nCats="0" />
+    </SpeciesDescription>
+    <StateVariables scenario="4">
+      <GlobalStateVariables GSvars="21">
+        <GSVar var="1">
+          <Label>CALFMORT</Label>
+          <InitState>=23.68+2.86*NRAND</InitState>
+          <TransState>=GS1</TransState>
+        </GSVar>
+        <GSVar var="2">
+          <Label>SADEATHS</Label>
+          <InitState>=1.83+0.48*NRAND</InitState>
+          <TransState>=GS2</TransState>
+        </GSVar>
+        <GSVar var="3">
+          <Label>ADDEATHS</Label>
+          <InitState>=1.02+0.23*NRAND</InitState>
+          <TransState>=GS3</TransState>
+        </GSVar>
+        <GSVar var="4">
+          <Label>OLDMDEATHSB</Label>
+          <InitState>=0.451+0.124*NRAND</InitState>
+          <TransState>=GS4</TransState>
+        </GSVar>
+        <GSVar var="5">
+          <Label>OLDFDEATHS</Label>
+          <InitState>=3.56+0.91*NRAND</InitState>
+          <TransState>=GS5</TransState>
+        </GSVar>
+        <GSVar var="6">
+          <Label>PLOSS</Label>
+          <InitState>0.33</InitState>
+          <TransState>=GS6</TransState>
+        </GSVar>
+        <GSVar var="7">
+          <Label>SAMORT</Label>
+          <InitState>=SADEATHS/PLOSS</InitState>
+          <TransState>=GS7</TransState>
+        </GSVar>
+        <GSVar var="8">
+          <Label>ADMORT</Label>
+          <InitState>=ADDEATHS/PLOSS</InitState>
+          <TransState>=GS8</TransState>
+        </GSVar>
+        <GSVar var="9">
+          <Label>OLDFMORT</Label>
+          <InitState>=OLDFDEATHS/PLOSS</InitState>
+          <TransState>=GS9</TransState>
+        </GSVar>
+        <GSVar var="10">
+          <Label>OLDMMORTA</Label>
+          <InitState>=ADMORT</InitState>
+          <TransState>=GS10</TransState>
+        </GSVar>
+        <GSVar var="11">
+          <Label>OLDMMORTB</Label>
+          <InitState>=(OLDMDEATHSB/PLOSS)</InitState>
+          <TransState>=GS11</TransState>
+        </GSVar>
+        <GSVar var="12">
+          <Label>EVCM</Label>
+          <InitState>7.81</InitState>
+          <TransState>=GS12</TransState>
+        </GSVar>
+        <GSVar var="13">
+          <Label>EVSAMORT</Label>
+          <InitState>2.1</InitState>
+          <TransState>=GS13</TransState>
+        </GSVar>
+        <GSVar var="14">
+          <Label>EVADMORT</Label>
+          <InitState>0</InitState>
+          <TransState>=GS14</TransState>
+        </GSVar>
+        <GSVar var="15">
+          <Label>EVOLDFMORT</Label>
+          <InitState>0</InitState>
+          <TransState>=GS15</TransState>
+        </GSVar>
+        <GSVar var="16">
+          <Label>EVOLDMMORT</Label>
+          <InitState>2.91</InitState>
+          <TransState>=GS16</TransState>
+        </GSVar>
+        <GSVar var="17">
+          <Label>BRYOUNGB</Label>
+          <InitState>=4.344+0.014*NRAND</InitState>
+          <TransState>=GS17</TransState>
+        </GSVar>
+        <GSVar var="18">
+          <Label>BRPEAK</Label>
+          <InitState>=29.42+2.16*NRAND</InitState>
+          <TransState>=GS18</TransState>
+        </GSVar>
+        <GSVar var="19">
+          <Label>BROLDB</Label>
+          <InitState>=-1.165+0.009*NRAND</InitState>
+          <TransState>=GS19</TransState>
+        </GSVar>
+        <GSVar var="20">
+          <Label>EVBRPEAK</Label>
+          <InitState>7.97</InitState>
+          <TransState>=GS20</TransState>
+        </GSVar>
+        <GSVar var="21">
+          <Label>EVBROLD</Label>
+          <InitState>3.08</InitState>
+          <TransState>=GS21</TransState>
+        </GSVar>
+      </GlobalStateVariables>
+      <PopulationStateVariables PSvars="0" />
+      <IndividualStateVariables ISvars="0" />
+    </StateVariables>
+    <DefaultVarValues nDefs="0" />
+    <Dispersal scenario="4">
+      <LowerDispersalAge>1</LowerDispersalAge>
+      <UpperDispersalAge>100</UpperDispersalAge>
+      <FemaleDispersal>True</FemaleDispersal>
+      <MaleDispersal>True</MaleDispersal>
+      <DispersalSurvival>100</DispersalSurvival>
+      <DisperseSaturated>False</DisperseSaturated>
+      <DisperseN>False</DisperseN>
+      <DispersalModifier>
+      </DispersalModifier>
+      <DispersalRates>
+        <DispRate source="1" dest="1">
+        </DispRate>
+        <DispRate source="1" dest="2">=(Y&gt;35)*0.425</DispRate>
+        <DispRate source="2" dest="1">0</DispRate>
+        <DispRate source="2" dest="2">100</DispRate>
+      </DispersalRates>
+    </Dispersal>
+    <ReproductiveSystem scenario="4">
+      <Monogamy>False</Monogamy>
+      <Polygamy>True</Polygamy>
+      <LTMonogamy>False</LTMonogamy>
+      <LTPolygamy>False</LTPolygamy>
+      <Hermaphroditic>False</Hermaphroditic>
+      <FemaleBreedingAge>6</FemaleBreedingAge>
+      <MaleBreedingAge>11</MaleBreedingAge>
+      <FemaleLastBreedingAge>48</FemaleLastBreedingAge>
+      <MaleLastBreedingAge>40</MaleLastBreedingAge>
+      <MaximumAge>68</MaximumAge>
+      <maxBroods>1</maxBroods>
+      <maxBroodSize>1</maxBroodSize>
+      <UseNormal>False</UseNormal>
+      <UseFullDistr>True</UseFullDistr>
+      <SexRatio>50</SexRatio>
+      <DepOffspring>0</DepOffspring>
+    </ReproductiveSystem>
+    <StableAgeDistribution scenario="4">Proportional</StableAgeDistribution>
+    <TranslocateOption scenario="4">
+      <Translocate>False</Translocate>
+      <TranslocationSurvival>50</TranslocationSurvival>
+      <TranslocationRelSurvival>100</TranslocationRelSurvival>
+      <TranslocationIf>1</TranslocationIf>
+      <ISHarvest>0</ISHarvest>
+    </TranslocateOption>
+    <GeneticManagement scenario="4">
+      <ImportStudbook>False</ImportStudbook>
+      <StudbookFile>
+      </StudbookFile>
+      <StudbookAppend>False</StudbookAppend>
+      <NeutralLoci>1</NeutralLoci>
+      <Tally1Locus>True</Tally1Locus>
+      <TallyOtherLoci>False</TallyOtherLoci>
+      <TallyAllLoci>False</TallyAllLoci>
+      <ImportAlleleFreqsFile>False</ImportAlleleFreqsFile>
+      <AlleleFreqsFile>
+      </AlleleFreqsFile>
+      <Freq2Kinships>False</Freq2Kinships>
+      <OutputGenePop>False</OutputGenePop>
+      <OutputAlleleFreqFile>False</OutputAlleleFreqFile>
+      <mkGD>False</mkGD>
+      <mkGDist>False</mkGDist>
+      <MutationLoci>0</MutationLoci>
+      <MutationRate>0</MutationRate>
+      <MateTriesIS>0</MateTriesIS>
+    </GeneticManagement>
+    <PopulationRates scenario="4">
+      <Population pop="1">
+        <Label>Sarasota</Label>
+        <PopStateVariables pop="1" />
+        <DensityDependence pop="1">
+          <DDRepro>False</DDRepro>
+          <DDP0>50</DDP0>
+          <DDPK>25</DDPK>
+          <DDAllee>1</DDAllee>
+          <DDSlope>2</DDSlope>
+        </DensityDependence>
+        <ReproductiveRates pop="1">
+          <PercentBreed>=BRPEAK+(A&lt;12)*BRYOUNGB*(A-12)+(A&gt;25)*BROLDB*(A-25)</PercentBreed>
+          <EVBreed>=(A&gt;11)*(A&lt;26)*EVBRPEAK+(A&gt;25)*EVBROLD</EVBreed>
+          <Brood n="0">0</Brood>
+          <Brood n="1">100</Brood>
+          <BroodMean>2.5</BroodMean>
+          <BroodSD>1</BroodSD>
+          <BroodSize size="1">100</BroodSize>
+        </ReproductiveRates>
+        <MortalityRates pop="1">
+          <FemaleMort age="0">=CALFMORT</FemaleMort>
+          <EVFemaleMort age="0">=EVCM</EVFemaleMort>
+          <FemaleMort age="1">=SAMORT</FemaleMort>
+          <EVFemaleMort age="1">=EVSAMORT</EVFemaleMort>
+          <FemaleMort age="2">=SAMORT</FemaleMort>
+          <EVFemaleMort age="2">=EVSAMORT</EVFemaleMort>
+          <FemaleMort age="3">=SAMORT</FemaleMort>
+          <EVFemaleMort age="3">=EVSAMORT</EVFemaleMort>
+          <FemaleMort age="4">=SAMORT</FemaleMort>
+          <EVFemaleMort age="4">=EVSAMORT</EVFemaleMort>
+          <FemaleMort age="5">=ADMORT</FemaleMort>
+          <EVFemaleMort age="5">=EVADMORT</EVFemaleMort>
+          <FemaleMort age="6">=ADMORT*(A&lt;=25)+(A&gt;25)*OLDFMORT</FemaleMort>
+          <EVFemaleMort age="6">=EVADMORT*(A&lt;=25)+(A&gt;25)*EVOLDFMORT</EVFemaleMort>
+          <MaleMort age="0">=CALFMORT</MaleMort>
+          <EVMaleMort age="0">=EVCM</EVMaleMort>
+          <MaleMort age="1">=SAMORT</MaleMort>
+          <EVMaleMort age="1">=EVSAMORT</EVMaleMort>
+          <MaleMort age="2">=SAMORT</MaleMort>
+          <EVMaleMort age="2">=EVSAMORT</EVMaleMort>
+          <MaleMort age="3">=SAMORT</MaleMort>
+          <EVMaleMort age="3">=EVSAMORT</EVMaleMort>
+          <MaleMort age="4">=SAMORT</MaleMort>
+          <EVMaleMort age="4">=EVSAMORT</EVMaleMort>
+          <MaleMort age="5">=ADMORT</MaleMort>
+          <EVMaleMort age="5">=EVADMORT</EVMaleMort>
+          <MaleMort age="6">=ADMORT</MaleMort>
+          <EVMaleMort age="6">=EVADMORT</EVMaleMort>
+          <MaleMort age="7">=ADMORT</MaleMort>
+          <EVMaleMort age="7">=EVADMORT</EVMaleMort>
+          <MaleMort age="8">=ADMORT</MaleMort>
+          <EVMaleMort age="8">=EVADMORT</EVMaleMort>
+          <MaleMort age="9">=ADMORT</MaleMort>
+          <EVMaleMort age="9">=EVADMORT</EVMaleMort>
+          <MaleMort age="10">=ADMORT</MaleMort>
+          <EVMaleMort age="10">=EVADMORT</EVMaleMort>
+          <MaleMort age="11">=100*(A&gt;53)+ADMORT*(A&lt;=25)+(A&gt;25)*(OLDMMORTA+OLDMMORTB*(A-25))</MaleMort>
+          <EVMaleMort age="11">=EVADMORT*(A&lt;=25)+(A&gt;25)*EVOLDMMORT</EVMaleMort>
+        </MortalityRates>
+        <Monopolization pop="1">
+          <PercentMales>100</PercentMales>
+        </Monopolization>
+        <InitialPopulationSize pop="1">
+          <InitialN>91</InitialN>
+          <FemalesAge age="0">0</FemalesAge>
+          <FemalesAge age="1">309</FemalesAge>
+          <FemalesAge age="2">280</FemalesAge>
+          <FemalesAge age="3">254</FemalesAge>
+          <FemalesAge age="4">229</FemalesAge>
+          <FemalesAge age="5">207</FemalesAge>
+          <FemalesAge age="6">198</FemalesAge>
+          <FemalesAge age="7">191</FemalesAge>
+          <FemalesAge age="8">183</FemalesAge>
+          <FemalesAge age="9">175</FemalesAge>
+          <FemalesAge age="10">168</FemalesAge>
+          <FemalesAge age="11">161</FemalesAge>
+          <FemalesAge age="12">154</FemalesAge>
+          <FemalesAge age="13">148</FemalesAge>
+          <FemalesAge age="14">142</FemalesAge>
+          <FemalesAge age="15">136</FemalesAge>
+          <FemalesAge age="16">131</FemalesAge>
+          <FemalesAge age="17">125</FemalesAge>
+          <FemalesAge age="18">120</FemalesAge>
+          <FemalesAge age="19">115</FemalesAge>
+          <FemalesAge age="20">111</FemalesAge>
+          <FemalesAge age="21">106</FemalesAge>
+          <FemalesAge age="22">101</FemalesAge>
+          <FemalesAge age="23">97</FemalesAge>
+          <FemalesAge age="24">94</FemalesAge>
+          <FemalesAge age="25">89</FemalesAge>
+          <FemalesAge age="26">86</FemalesAge>
+          <FemalesAge age="27">80</FemalesAge>
+          <FemalesAge age="28">73</FemalesAge>
+          <FemalesAge age="29">69</FemalesAge>
+          <FemalesAge age="30">63</FemalesAge>
+          <FemalesAge age="31">59</FemalesAge>
+          <FemalesAge age="32">54</FemalesAge>
+          <FemalesAge age="33">50</FemalesAge>
+          <FemalesAge age="34">47</FemalesAge>
+          <FemalesAge age="35">43</FemalesAge>
+          <FemalesAge age="36">41</FemalesAge>
+          <FemalesAge age="37">37</FemalesAge>
+          <FemalesAge age="38">34</FemalesAge>
+          <FemalesAge age="39">32</FemalesAge>
+          <FemalesAge age="40">30</FemalesAge>
+          <FemalesAge age="41">27</FemalesAge>
+          <FemalesAge age="42">26</FemalesAge>
+          <FemalesAge age="43">23</FemalesAge>
+          <FemalesAge age="44">22</FemalesAge>
+          <FemalesAge age="45">20</FemalesAge>
+          <FemalesAge age="46">19</FemalesAge>
+          <FemalesAge age="47">17</FemalesAge>
+          <FemalesAge age="48">17</FemalesAge>
+          <FemalesAge age="49">15</FemalesAge>
+          <FemalesAge age="50">13</FemalesAge>
+          <FemalesAge age="51">13</FemalesAge>
+          <FemalesAge age="52">12</FemalesAge>
+          <FemalesAge age="53">11</FemalesAge>
+          <FemalesAge age="54">10</FemalesAge>
+          <FemalesAge age="55">10</FemalesAge>
+          <FemalesAge age="56">9</FemalesAge>
+          <FemalesAge age="57">8</FemalesAge>
+          <FemalesAge age="58">7</FemalesAge>
+          <FemalesAge age="59">7</FemalesAge>
+          <FemalesAge age="60">7</FemalesAge>
+          <FemalesAge age="61">6</FemalesAge>
+          <FemalesAge age="62">5</FemalesAge>
+          <FemalesAge age="63">5</FemalesAge>
+          <FemalesAge age="64">5</FemalesAge>
+          <FemalesAge age="65">5</FemalesAge>
+          <FemalesAge age="66">4</FemalesAge>
+          <FemalesAge age="67">4</FemalesAge>
+          <FemalesAge age="68">3</FemalesAge>
+          <MalesAge age="0">0</MalesAge>
+          <MalesAge age="1">309</MalesAge>
+          <MalesAge age="2">280</MalesAge>
+          <MalesAge age="3">254</MalesAge>
+          <MalesAge age="4">229</MalesAge>
+          <MalesAge age="5">207</MalesAge>
+          <MalesAge age="6">198</MalesAge>
+          <MalesAge age="7">191</MalesAge>
+          <MalesAge age="8">183</MalesAge>
+          <MalesAge age="9">175</MalesAge>
+          <MalesAge age="10">168</MalesAge>
+          <MalesAge age="11">161</MalesAge>
+          <MalesAge age="12">154</MalesAge>
+          <MalesAge age="13">148</MalesAge>
+          <MalesAge age="14">142</MalesAge>
+          <MalesAge age="15">136</MalesAge>
+          <MalesAge age="16">131</MalesAge>
+          <MalesAge age="17">125</MalesAge>
+          <MalesAge age="18">120</MalesAge>
+          <MalesAge age="19">115</MalesAge>
+          <MalesAge age="20">111</MalesAge>
+          <MalesAge age="21">106</MalesAge>
+          <MalesAge age="22">101</MalesAge>
+          <MalesAge age="23">97</MalesAge>
+          <MalesAge age="24">94</MalesAge>
+          <MalesAge age="25">89</MalesAge>
+          <MalesAge age="26">86</MalesAge>
+          <MalesAge age="27">82</MalesAge>
+          <MalesAge age="28">76</MalesAge>
+          <MalesAge age="29">72</MalesAge>
+          <MalesAge age="30">66</MalesAge>
+          <MalesAge age="31">61</MalesAge>
+          <MalesAge age="32">55</MalesAge>
+          <MalesAge age="33">49</MalesAge>
+          <MalesAge age="34">44</MalesAge>
+          <MalesAge age="35">38</MalesAge>
+          <MalesAge age="36">34</MalesAge>
+          <MalesAge age="37">29</MalesAge>
+          <MalesAge age="38">25</MalesAge>
+          <MalesAge age="39">21</MalesAge>
+          <MalesAge age="40">17</MalesAge>
+          <MalesAge age="41">15</MalesAge>
+          <MalesAge age="42">12</MalesAge>
+          <MalesAge age="43">10</MalesAge>
+          <MalesAge age="44">7</MalesAge>
+          <MalesAge age="45">6</MalesAge>
+          <MalesAge age="46">5</MalesAge>
+          <MalesAge age="47">4</MalesAge>
+          <MalesAge age="48">3</MalesAge>
+          <MalesAge age="49">2</MalesAge>
+          <MalesAge age="50">2</MalesAge>
+          <MalesAge age="51">1</MalesAge>
+          <MalesAge age="52">1</MalesAge>
+          <MalesAge age="53">0</MalesAge>
+          <MalesAge age="54">1</MalesAge>
+          <MalesAge age="55">0</MalesAge>
+          <MalesAge age="56">0</MalesAge>
+          <MalesAge age="57">0</MalesAge>
+          <MalesAge age="58">0</MalesAge>
+          <MalesAge age="59">0</MalesAge>
+          <MalesAge age="60">0</MalesAge>
+          <MalesAge age="61">0</MalesAge>
+          <MalesAge age="62">0</MalesAge>
+          <MalesAge age="63">0</MalesAge>
+          <MalesAge age="64">0</MalesAge>
+          <MalesAge age="65">0</MalesAge>
+          <MalesAge age="66">0</MalesAge>
+          <MalesAge age="67">0</MalesAge>
+          <MalesAge age="68">0</MalesAge>
+        </InitialPopulationSize>
+        <CarryingCapacity pop="1">
+          <K>200</K>
+          <EVK>0</EVK>
+          <Ktrend>False</Ktrend>
+          <Kyears>5</Kyears>
+          <Kchange>-10</Kchange>
+          <Kcriteria>False</Kcriteria>
+          <Ktest>=N</Ktest>
+          <Kpriority>0</Kpriority>
+          <AllowK>False</AllowK>
+          <KAllow>1</KAllow>
+        </CarryingCapacity>
+        <Harvest pop="1">
+          <Harvest>True</Harvest>
+          <StartYear>1</StartYear>
+          <EndYear>35</EndYear>
+          <Interval>1</Interval>
+          <HarvCriteria>1</HarvCriteria>
+          <IHarvCriteria>1</IHarvCriteria>
+          <FemalesAge age="0">0</FemalesAge>
+          <FemalesAge age="1">=(Y=1)+(Y=18)+(Y=25)</FemalesAge>
+          <FemalesAge age="2">=(Y=19)</FemalesAge>
+          <FemalesAge age="3">=(Y=23)</FemalesAge>
+          <FemalesAge age="4">0</FemalesAge>
+          <FemalesAge age="5">0</FemalesAge>
+          <FemalesAge age="6">=(Y=11)+(Y=27)</FemalesAge>
+          <MalesAge age="0">0</MalesAge>
+          <MalesAge age="1">0</MalesAge>
+          <MalesAge age="2">=(Y=29)+(Y=34)</MalesAge>
+          <MalesAge age="3">0</MalesAge>
+          <MalesAge age="4">0</MalesAge>
+          <MalesAge age="5">0</MalesAge>
+          <MalesAge age="6">0</MalesAge>
+          <MalesAge age="7">0</MalesAge>
+          <MalesAge age="8">=(Y=21)</MalesAge>
+          <MalesAge age="9">0</MalesAge>
+          <MalesAge age="10">=(Y=31)</MalesAge>
+          <MalesAge age="11">=(Y=7)+(Y=22)</MalesAge>
+        </Harvest>
+        <Supplementation pop="1">
+          <Supplement>False</Supplement>
+          <StartYear>1</StartYear>
+          <EndYear>100</EndYear>
+          <Interval>1</Interval>
+          <Criteria>1</Criteria>
+          <FemalesAge age="0">0</FemalesAge>
+          <FemalesAge age="1">0</FemalesAge>
+          <FemalesAge age="2">0</FemalesAge>
+          <FemalesAge age="3">0</FemalesAge>
+          <FemalesAge age="4">0</FemalesAge>
+          <FemalesAge age="5">0</FemalesAge>
+          <FemalesAge age="6">0</FemalesAge>
+          <MalesAge age="0">0</MalesAge>
+          <MalesAge age="1">0</MalesAge>
+          <MalesAge age="2">0</MalesAge>
+          <MalesAge age="3">0</MalesAge>
+          <MalesAge age="4">0</MalesAge>
+          <MalesAge age="5">0</MalesAge>
+          <MalesAge age="6">0</MalesAge>
+          <MalesAge age="7">0</MalesAge>
+          <MalesAge age="8">0</MalesAge>
+          <MalesAge age="9">0</MalesAge>
+          <MalesAge age="10">0</MalesAge>
+          <MalesAge age="11">0</MalesAge>
+        </Supplementation>
+        <GeneticManagement pop="1">
+          <BreedMaintainK>False</BreedMaintainK>
+          <AvoidInbr>False</AvoidInbr>
+          <AvoidInbrF>1</AvoidInbrF>
+          <PairMKdynamic>False</PairMKdynamic>
+          <PairMKStatic>False</PairMKStatic>
+          <SetKin>0</SetKin>
+          <MaxNMates>0</MaxNMates>
+          <NumTriesFindMate>10</NumTriesFindMate>
+        </GeneticManagement>
+      </Population>
+      <Population pop="2">
+        <Label>Lost</Label>
+        <PopStateVariables pop="2" />
+        <DensityDependence pop="2">
+          <DDRepro>False</DDRepro>
+          <DDP0>50</DDP0>
+          <DDPK>25</DDPK>
+          <DDAllee>1</DDAllee>
+          <DDSlope>2</DDSlope>
+        </DensityDependence>
+        <ReproductiveRates pop="2">
+          <PercentBreed>0</PercentBreed>
+          <EVBreed>0</EVBreed>
+          <Brood n="0">0</Brood>
+          <Brood n="1">100</Brood>
+          <BroodMean>2.5</BroodMean>
+          <BroodSD>1</BroodSD>
+          <BroodSize size="1">100</BroodSize>
+        </ReproductiveRates>
+        <MortalityRates pop="2">
+          <FemaleMort age="0">100</FemaleMort>
+          <EVFemaleMort age="0">0</EVFemaleMort>
+          <FemaleMort age="1">100</FemaleMort>
+          <EVFemaleMort age="1">0</EVFemaleMort>
+          <FemaleMort age="2">100</FemaleMort>
+          <EVFemaleMort age="2">0</EVFemaleMort>
+          <FemaleMort age="3">100</FemaleMort>
+          <EVFemaleMort age="3">0</EVFemaleMort>
+          <FemaleMort age="4">100</FemaleMort>
+          <EVFemaleMort age="4">0</EVFemaleMort>
+          <FemaleMort age="5">100</FemaleMort>
+          <EVFemaleMort age="5">0</EVFemaleMort>
+          <FemaleMort age="6">100</FemaleMort>
+          <EVFemaleMort age="6">0</EVFemaleMort>
+          <MaleMort age="0">100</MaleMort>
+          <EVMaleMort age="0">0</EVMaleMort>
+          <MaleMort age="1">100</MaleMort>
+          <EVMaleMort age="1">0</EVMaleMort>
+          <MaleMort age="2">100</MaleMort>
+          <EVMaleMort age="2">0</EVMaleMort>
+          <MaleMort age="3">100</MaleMort>
+          <EVMaleMort age="3">0</EVMaleMort>
+          <MaleMort age="4">100</MaleMort>
+          <EVMaleMort age="4">0</EVMaleMort>
+          <MaleMort age="5">100</MaleMort>
+          <EVMaleMort age="5">0</EVMaleMort>
+          <MaleMort age="6">100</MaleMort>
+          <EVMaleMort age="6">0</EVMaleMort>
+          <MaleMort age="7">100</MaleMort>
+          <EVMaleMort age="7">0</EVMaleMort>
+          <MaleMort age="8">100</MaleMort>
+          <EVMaleMort age="8">0</EVMaleMort>
+          <MaleMort age="9">100</MaleMort>
+          <EVMaleMort age="9">0</EVMaleMort>
+          <MaleMort age="10">100</MaleMort>
+          <EVMaleMort age="10">0</EVMaleMort>
+          <MaleMort age="11">100</MaleMort>
+          <EVMaleMort age="11">0</EVMaleMort>
+        </MortalityRates>
+        <Monopolization pop="2">
+          <PercentMales>100</PercentMales>
+        </Monopolization>
+        <InitialPopulationSize pop="2">
+          <InitialN>0</InitialN>
+          <FemalesAge age="0">0</FemalesAge>
+          <FemalesAge age="1">309</FemalesAge>
+          <FemalesAge age="2">280</FemalesAge>
+          <FemalesAge age="3">254</FemalesAge>
+          <FemalesAge age="4">229</FemalesAge>
+          <FemalesAge age="5">207</FemalesAge>
+          <FemalesAge age="6">198</FemalesAge>
+          <FemalesAge age="7">191</FemalesAge>
+          <FemalesAge age="8">183</FemalesAge>
+          <FemalesAge age="9">175</FemalesAge>
+          <FemalesAge age="10">168</FemalesAge>
+          <FemalesAge age="11">161</FemalesAge>
+          <FemalesAge age="12">154</FemalesAge>
+          <FemalesAge age="13">148</FemalesAge>
+          <FemalesAge age="14">142</FemalesAge>
+          <FemalesAge age="15">136</FemalesAge>
+          <FemalesAge age="16">131</FemalesAge>
+          <FemalesAge age="17">125</FemalesAge>
+          <FemalesAge age="18">120</FemalesAge>
+          <FemalesAge age="19">115</FemalesAge>
+          <FemalesAge age="20">111</FemalesAge>
+          <FemalesAge age="21">106</FemalesAge>
+          <FemalesAge age="22">101</FemalesAge>
+          <FemalesAge age="23">97</FemalesAge>
+          <FemalesAge age="24">94</FemalesAge>
+          <FemalesAge age="25">89</FemalesAge>
+          <FemalesAge age="26">86</FemalesAge>
+          <FemalesAge age="27">80</FemalesAge>
+          <FemalesAge age="28">73</FemalesAge>
+          <FemalesAge age="29">69</FemalesAge>
+          <FemalesAge age="30">63</FemalesAge>
+          <FemalesAge age="31">59</FemalesAge>
+          <FemalesAge age="32">54</FemalesAge>
+          <FemalesAge age="33">50</FemalesAge>
+          <FemalesAge age="34">47</FemalesAge>
+          <FemalesAge age="35">43</FemalesAge>
+          <FemalesAge age="36">41</FemalesAge>
+          <FemalesAge age="37">37</FemalesAge>
+          <FemalesAge age="38">34</FemalesAge>
+          <FemalesAge age="39">32</FemalesAge>
+          <FemalesAge age="40">30</FemalesAge>
+          <FemalesAge age="41">27</FemalesAge>
+          <FemalesAge age="42">26</FemalesAge>
+          <FemalesAge age="43">23</FemalesAge>
+          <FemalesAge age="44">22</FemalesAge>
+          <FemalesAge age="45">20</FemalesAge>
+          <FemalesAge age="46">19</FemalesAge>
+          <FemalesAge age="47">17</FemalesAge>
+          <FemalesAge age="48">17</FemalesAge>
+          <FemalesAge age="49">15</FemalesAge>
+          <FemalesAge age="50">13</FemalesAge>
+          <FemalesAge age="51">13</FemalesAge>
+          <FemalesAge age="52">12</FemalesAge>
+          <FemalesAge age="53">11</FemalesAge>
+          <FemalesAge age="54">10</FemalesAge>
+          <FemalesAge age="55">10</FemalesAge>
+          <FemalesAge age="56">9</FemalesAge>
+          <FemalesAge age="57">8</FemalesAge>
+          <FemalesAge age="58">7</FemalesAge>
+          <FemalesAge age="59">7</FemalesAge>
+          <FemalesAge age="60">7</FemalesAge>
+          <FemalesAge age="61">6</FemalesAge>
+          <FemalesAge age="62">5</FemalesAge>
+          <FemalesAge age="63">5</FemalesAge>
+          <FemalesAge age="64">5</FemalesAge>
+          <FemalesAge age="65">5</FemalesAge>
+          <FemalesAge age="66">4</FemalesAge>
+          <FemalesAge age="67">4</FemalesAge>
+          <FemalesAge age="68">3</FemalesAge>
+          <MalesAge age="0">0</MalesAge>
+          <MalesAge age="1">309</MalesAge>
+          <MalesAge age="2">280</MalesAge>
+          <MalesAge age="3">254</MalesAge>
+          <MalesAge age="4">229</MalesAge>
+          <MalesAge age="5">207</MalesAge>
+          <MalesAge age="6">198</MalesAge>
+          <MalesAge age="7">191</MalesAge>
+          <MalesAge age="8">183</MalesAge>
+          <MalesAge age="9">175</MalesAge>
+          <MalesAge age="10">168</MalesAge>
+          <MalesAge age="11">161</MalesAge>
+          <MalesAge age="12">154</MalesAge>
+          <MalesAge age="13">148</MalesAge>
+          <MalesAge age="14">142</MalesAge>
+          <MalesAge age="15">136</MalesAge>
+          <MalesAge age="16">131</MalesAge>
+          <MalesAge age="17">125</MalesAge>
+          <MalesAge age="18">120</MalesAge>
+          <MalesAge age="19">115</MalesAge>
+          <MalesAge age="20">111</MalesAge>
+          <MalesAge age="21">106</MalesAge>
+          <MalesAge age="22">101</MalesAge>
+          <MalesAge age="23">97</MalesAge>
+          <MalesAge age="24">94</MalesAge>
+          <MalesAge age="25">89</MalesAge>
+          <MalesAge age="26">86</MalesAge>
+          <MalesAge age="27">82</MalesAge>
+          <MalesAge age="28">76</MalesAge>
+          <MalesAge age="29">72</MalesAge>
+          <MalesAge age="30">66</MalesAge>
+          <MalesAge age="31">61</MalesAge>
+          <MalesAge age="32">55</MalesAge>
+          <MalesAge age="33">49</MalesAge>
+          <MalesAge age="34">44</MalesAge>
+          <MalesAge age="35">38</MalesAge>
+          <MalesAge age="36">34</MalesAge>
+          <MalesAge age="37">29</MalesAge>
+          <MalesAge age="38">25</MalesAge>
+          <MalesAge age="39">21</MalesAge>
+          <MalesAge age="40">17</MalesAge>
+          <MalesAge age="41">15</MalesAge>
+          <MalesAge age="42">12</MalesAge>
+          <MalesAge age="43">10</MalesAge>
+          <MalesAge age="44">7</MalesAge>
+          <MalesAge age="45">6</MalesAge>
+          <MalesAge age="46">5</MalesAge>
+          <MalesAge age="47">4</MalesAge>
+          <MalesAge age="48">3</MalesAge>
+          <MalesAge age="49">2</MalesAge>
+          <MalesAge age="50">2</MalesAge>
+          <MalesAge age="51">1</MalesAge>
+          <MalesAge age="52">1</MalesAge>
+          <MalesAge age="53">0</MalesAge>
+          <MalesAge age="54">1</MalesAge>
+          <MalesAge age="55">0</MalesAge>
+          <MalesAge age="56">0</MalesAge>
+          <MalesAge age="57">0</MalesAge>
+          <MalesAge age="58">0</MalesAge>
+          <MalesAge age="59">0</MalesAge>
+          <MalesAge age="60">0</MalesAge>
+          <MalesAge age="61">0</MalesAge>
+          <MalesAge age="62">0</MalesAge>
+          <MalesAge age="63">0</MalesAge>
+          <MalesAge age="64">0</MalesAge>
+          <MalesAge age="65">0</MalesAge>
+          <MalesAge age="66">0</MalesAge>
+          <MalesAge age="67">0</MalesAge>
+          <MalesAge age="68">0</MalesAge>
+        </InitialPopulationSize>
+        <CarryingCapacity pop="2">
+          <K>200</K>
+          <EVK>0</EVK>
+          <Ktrend>False</Ktrend>
+          <Kyears>5</Kyears>
+          <Kchange>-10</Kchange>
+          <Kcriteria>False</Kcriteria>
+          <Ktest>=N</Ktest>
+          <Kpriority>0</Kpriority>
+          <AllowK>False</AllowK>
+          <KAllow>1</KAllow>
+        </CarryingCapacity>
+        <Harvest pop="2">
+          <Harvest>False</Harvest>
+          <StartYear>1</StartYear>
+          <EndYear>35</EndYear>
+          <Interval>1</Interval>
+          <HarvCriteria>1</HarvCriteria>
+          <IHarvCriteria>1</IHarvCriteria>
+          <FemalesAge age="0">0</FemalesAge>
+          <FemalesAge age="1">=(Y=1)+(Y=18)+(Y=25)</FemalesAge>
+          <FemalesAge age="2">=(Y=19)</FemalesAge>
+          <FemalesAge age="3">=(Y=23)</FemalesAge>
+          <FemalesAge age="4">0</FemalesAge>
+          <FemalesAge age="5">0</FemalesAge>
+          <FemalesAge age="6">=(Y=11)+(Y=27)</FemalesAge>
+          <MalesAge age="0">0</MalesAge>
+          <MalesAge age="1">0</MalesAge>
+          <MalesAge age="2">=(Y=29)+(Y=34)</MalesAge>
+          <MalesAge age="3">0</MalesAge>
+          <MalesAge age="4">0</MalesAge>
+          <MalesAge age="5">0</MalesAge>
+          <MalesAge age="6">0</MalesAge>
+          <MalesAge age="7">0</MalesAge>
+          <MalesAge age="8">=(Y=21)</MalesAge>
+          <MalesAge age="9">0</MalesAge>
+          <MalesAge age="10">=(Y=31)</MalesAge>
+          <MalesAge age="11">=(Y=7)+(Y=22)</MalesAge>
+        </Harvest>
+        <Supplementation pop="2">
+          <Supplement>False</Supplement>
+          <StartYear>1</StartYear>
+          <EndYear>100</EndYear>
+          <Interval>1</Interval>
+          <Criteria>1</Criteria>
+          <FemalesAge age="0">0</FemalesAge>
+          <FemalesAge age="1">0</FemalesAge>
+          <FemalesAge age="2">0</FemalesAge>
+          <FemalesAge age="3">0</FemalesAge>
+          <FemalesAge age="4">0</FemalesAge>
+          <FemalesAge age="5">0</FemalesAge>
+          <FemalesAge age="6">0</FemalesAge>
+          <MalesAge age="0">0</MalesAge>
+          <MalesAge age="1">0</MalesAge>
+          <MalesAge age="2">0</MalesAge>
+          <MalesAge age="3">0</MalesAge>
+          <MalesAge age="4">0</MalesAge>
+          <MalesAge age="5">0</MalesAge>
+          <MalesAge age="6">0</MalesAge>
+          <MalesAge age="7">0</MalesAge>
+          <MalesAge age="8">0</MalesAge>
+          <MalesAge age="9">0</MalesAge>
+          <MalesAge age="10">0</MalesAge>
+          <MalesAge age="11">0</MalesAge>
+        </Supplementation>
+        <GeneticManagement pop="2">
+          <BreedMaintainK>False</BreedMaintainK>
+          <AvoidInbr>False</AvoidInbr>
+          <AvoidInbrF>1</AvoidInbrF>
+          <PairMKdynamic>False</PairMKdynamic>
+          <PairMKStatic>False</PairMKStatic>
+          <SetKin>0</SetKin>
+          <MaxNMates>0</MaxNMates>
+          <NumTriesFindMate>10</NumTriesFindMate>
+        </GeneticManagement>
+      </Population>
+    </PopulationRates>
+  </Scenario>
+  <SensitivityTests STs="0" />
+</VORTEXInputFile>
